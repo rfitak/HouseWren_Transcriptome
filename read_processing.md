@@ -205,7 +205,7 @@ fastp v0.20.0, time used: 3031 seconds
 ```
 
 ## Step 2: Correcting for sequencing errors
-[Rcorrector vce5d06b](https://github.com/mourisl/Rcorrector) is a kmer-based error correction method for RNA-seq data. The error-correction context differs substanntially in RNA-seq data from whole-genome sequencing (WGS) data, thus requires specific correction procedures.  Methds like _rcorrector_ can significantly improve downstream RNA-seq data analysis, especially if used to produce a _de novo_ transcriptome assembly.  The publication describing _rcorrector_ can be found here:
+[Rcorrector vce5d06b](https://github.com/mourisl/Rcorrector) is a kmer-based, error-correction method for RNA-seq data. The error-correction context differs substantially in RNA-seq data from whole-genome sequencing (WGS) data, thus requiring specific correction procedures.  Methods like _rcorrector_ can significantly improve downstream RNA-seq data analysis, especially if used to produce a _de novo_ transcriptome assembly.  The publication describing _rcorrector_ can be found here:
 Song L, Florea L (2015) Rcorrector: Efficient and accurate error correction for Illumina RNA-seq reads. _GigaScience_ 4:48. https://doi.org/10.1186/s13742-015-0089-y
 
 _Installation:_
