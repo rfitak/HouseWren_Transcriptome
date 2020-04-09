@@ -90,13 +90,6 @@ _See the Output HTML/PDF Files from ```fastp``` below:_
 _HOWR-1 Reads_
 ```
 # HOWR-1 PE reads
-Detecting adapter sequence for read1...
->Illumina TruSeq Adapter Read 1
-AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
-
-Detecting adapter sequence for read2...
-No adapter detected for read2
-
 Read1 before filtering:
 total reads: 350315944
 total bases: 52547391600
@@ -110,37 +103,37 @@ Q20 bases: 50838173238(96.7473%)
 Q30 bases: 48611492675(92.5098%)
 
 Read1 after filtering:
-total reads: 340602122
-total bases: 47652261110
-Q20 bases: 47104879440(98.8513%)
-Q30 bases: 45969609495(96.4689%)
+total reads: 340474459
+total bases: 47631199046
+Q20 bases: 47085051064(98.8534%)
+Q30 bases: 45950789198(96.472%)
 
 Read2 aftering filtering:
-total reads: 340602122
-total bases: 47601307266
-Q20 bases: 46601380520(97.8994%)
-Q30 bases: 44846464372(94.2127%)
+total reads: 340474459
+total bases: 47569274139
+Q20 bases: 46572539164(97.9047%)
+Q30 bases: 44820344133(94.2212%)
 
 Filtering result:
-reads passed filter: 681204244
-reads failed due to low quality: 15370542
-reads failed due to too many N: 47112
-reads failed due to too short: 2630734
-reads failed due to low complexity: 1379256
-reads with adapter trimmed: 258405625
-bases trimmed due to adapters: 6837694734
-reads with polyX in 3' end: 5836677
-bases trimmed in polyX tail: 279591204
+reads passed filter: 680948918
+reads failed due to low quality: 15303720
+reads failed due to too many N: 47110
+reads failed due to too short: 3058662
+reads failed due to low complexity: 1273478
+reads with adapter trimmed: 261704514
+bases trimmed due to adapters: 7048775313
+reads with polyX in 3' end: 3158499
+bases trimmed in polyX tail: 132541574
 
-Duplication rate: 12.3608%
+Duplication rate: 12.3609%
 
 Insert size peak (evaluated by paired-end reads): 150
 
-JSON report: .json
+JSON report: HOWR-1.json
 HTML report: HOWR-1.html
 
-fastp --in1 HOWR-1_R1_001.fastq.gz --in2 HOWR-1_R2_001.fastq.gz --out1 HOWR-1_cleaned.R1.fastq.gz --out2 HOWR-1_cleaned.R2.fastq.gz --detect_adapter_for_pe --adapter_fasta /home/rfitak/.bin/adapters.fa --cut_front --cut_tail --cut_window_size=4 --cut_mean_quality=20 --qualified_quality_phred=20 --average_qual 20 --unqualified_percent_limit=30 --n_base_limit=5 --length_required=50 --low_complexity_filter --complexity_threshold=30 --overrepresentation_analysis --trim_poly_x --poly_x_min_len 10 --html=HOWR-1.html --json=.json --report_title=HOWR-1 --thread=16 
-fastp v0.20.0, time used: 7718 seconds
+fastp --in1=HOWR-1_R1_001.fastq.gz --in2=HOWR-1_R2_001.fastq.gz --out1=HOWR-1_cleaned.R1.fastq.gz --out2=HOWR-1_cleaned.R2.fastq.gz --adapter_fasta=/home/rfitak/.bin/adapters.fa --cut_front --cut_tail --cut_window_size=4 --cut_mean_quality=20 --qualified_quality_phred=20 --average_qual=20 --unqualified_percent_limit=30 --n_base_limit=5 --length_required=50 --low_complexity_filter --complexity_threshold=30 --overrepresentation_analysis --trim_poly_x --poly_x_min_len=10 --html=HOWR-1.html --json=.json --report_title=HOWR-1 --thread=16 
+fastp v0.20.0, time used: 7621 seconds
 ```
 
 _HOWR-2 Reads_
@@ -185,7 +178,7 @@ Duplication rate: 15.4203%
 
 Insert size peak (evaluated by paired-end reads): 150
 
-JSON report: .json
+JSON report: HOWR-2.json
 HTML report: HOWR-2.html
 
 fastp --in1=HOWR-2_R1_001.fastq.gz --in2=HOWR-2_R2_001.fastq.gz --out1=HOWR-2_cleaned.R1.fastq.gz --out2=HOWR-2_cleaned.R2.fastq.gz --adapter_fasta=/home/rfitak/.bin/adapters.fa --cut_front --cut_tail --cut_window_size=4 --cut_mean_quality=20 --qualified_quality_phred=20 --average_qual=20 --unqualified_percent_limit=30 --n_base_limit=5 --length_required=50 --low_complexity_filter --complexity_threshold=30 --overrepresentation_analysis --trim_poly_x --poly_x_min_len=10 --html=HOWR-2.html --json=.json --report_title=HOWR-2 --thread=16 
