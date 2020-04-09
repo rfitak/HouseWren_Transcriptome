@@ -35,45 +35,52 @@ Only sample HOWR-1 is shown, the exact same code was repeated for HOWR-2 (`name=
 # Assign names to each sample
 name="HOWR-1"
 
-# Trim PE reads
-echo "Trimming the PE reads"
+# Run fastp cleaning
 fastp \
-   -i ${fwd1} \
-   -I ${rev1} \
-   -o ${name1}_F.trimmed.fq.gz \
-   -O ${name1}_R.trimmed.fq.gz \
+   --in1 ${name}_R1_001.fastq.gz \
+   --in2 ${name}_R2_001.fastq.gz \
+   --out1 ${name}_cleaned.R1.fastq.gz \
+   --out2 ${name}_cleaned.R2.fastq.gz \
    --detect_adapter_for_pe \
+   --adapter_fasta /home/rfitak/.bin/adapters.fa \
    --cut_front \
    --cut_tail \
    --cut_window_size=4 \
    --cut_mean_quality=20 \
    --qualified_quality_phred=20 \
+   --average_qual 20 \
    --unqualified_percent_limit=30 \
    --n_base_limit=5 \
    --length_required=50 \
    --low_complexity_filter \
    --complexity_threshold=30 \
    --overrepresentation_analysis \
-   --json=${name1}.json \
-   --html=${name1}.html \
-   --report_title="$name1" \
-   --thread=8
+   --trim_poly_x \
+   --poly_x_min_len 10 \
+   --html=${name}.html \
+   --json=${nname}.json \
+   --report_title="$name" \
+   --thread=16
 ```
 _Parameters Explained:_
 - --in1/--in2 :: input forward and reverse read files, recognizes gzip
 - --out1/-out2 :: output forward and reverse read files, recognizes gzip
 - --detect_adapter_for_pe :: enable PE adapter trimming
+- --adapter_fasta :: a file of known Illumina adapters to trim
 - --cut_front :: enable a 5' sliding window trimmer, like trimmomatic
 - --cut_tail :: enable a 3' sliding window trimmer, like trimmomatic
 - --cut_window_size=4 :: window size for the trimming
 - --cut_mean_quality=20 :: mean base score across the window required, or else trim the last base
 - --qualified_quality_phred=20 :: minimum base quality score to keep
+- --average_qual 20
 - --unqualified_percent_limit=30 :: Percent of bases allowed to be less than q in a read
 - --n_base_limit=5 :: if one read's number of N bases is >5, then this read pair is discarded
 - --length_required=50 :: minimum read length to keep after trimming
 - --low_complexity_filter :: filter sequences with a low complexity
 - --complexity_threshold=30 :: threshold for sequence complexity filter
 - --overrepresentation_analysis :: look for overrepresented sequences, like adapters
+- --trim_poly_x :: trim strings of homopolymers at the 3' end of reads
+- --poly_x_min_len 10 :: minimum length of homopolymer ot trim
 - --json=${name}.json :: output file name, JSON format
 - --html=${name}.html :: output file name, HTML format
 - --report_title="$name" :: output report tile
