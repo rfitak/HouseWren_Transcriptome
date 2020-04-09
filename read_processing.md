@@ -1,6 +1,6 @@
 # Cleaning the Raw Sequencing Reads
 This section will start with the raw sequencing data and perform a series a cleaning steps to prepare the sequences for the transcriptome assembly.  The various steps include:
-1.  Filtering low-quality reads, Trimming low-quality bases, adapter identification and removal
+1.  Filtering low-quality reads, trimming low-quality bases, adapter identification and removal
     - Program: [fastp](https://github.com/OpenGene/fastp) for paired-end reads 
 2.  Correcting for sequencing errors
     - Program: [rcorrector](https://github.com/mourisl/Rcorrector)
