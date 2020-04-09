@@ -10,11 +10,11 @@ This section will start with the raw sequencing data and perform a series a clea
 
 ### Raw Data Summary:
 
-| Name | Type | Insert Size | # Paired Reads | # Bases | Q20 bases | Q30 Bases |
+| Name | Type | # Paired Reads | # Bases | Q20 bases | Q30 Bases |
 | --- | --- | --- | --- | --- | --- | --- |
-| HOWR-1 | 151 bp; Paired-end | TBD | 313,465,270 | 94,666,511,540 | 88.2% | 81.4% |
-| HOWR-2 | 151 bp; Mate-pair | 5-7 kb | 226,692,460 | 68,461,122,920 | 93.1% | 85.3% |
-| __Total__ | n/a | n/a | 763,516,406 | 230,581,954,612 | 93.0% | 85.5% |
+| HOWR-1 | 150 bp; Paired-end | 350,315,944 | 105,094,783,200 | 97.6% | 94.0% |
+| HOWR-2 | 150 bp; Paired-end | 149,747,741 | 44,924,322,300 | 97.1% | 93.6% |
+| __Total__ | 150 bp; Paired-end | 500,063,685 | 150,019,105,500 | 97.4% | 93.9% |
 
 
 ## Step 1: Read trimming and filtering
