@@ -11,7 +11,7 @@ This section will start with the raw sequencing data and perform a series a clea
 ### Raw Data Summary:
 
 | Name | Type | # Paired Reads | # Bases | Q20 bases | Q30 Bases |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | HOWR-1 | 150 bp; Paired-end | 350,315,944 | 105,094,783,200 | 97.6% | 94.0% |
 | HOWR-2 | 150 bp; Paired-end | 149,747,741 | 44,924,322,300 | 97.1% | 93.6% |
 | __Total__ | 150 bp; Paired-end | 500,063,685 | 150,019,105,500 | 97.4% | 93.9% |
