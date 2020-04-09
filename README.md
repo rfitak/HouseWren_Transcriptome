@@ -1,7 +1,7 @@
 <h3><p align="center">Supplementary Methods for:</p></h3>
 <h2><p align="center">The <i>de novo</i> assembly of the house wren (<i>Troglodytes aedon</i>) transcriptome</p></h2>
 
-<I><h5>Rachael DiSciullo<sup>1</sup>, Robert R. Fitak<sup>2</sup>, Anna Forsman<sup>2</sup>, Scott Sakaluk<sup>2</sup>, Charles Thompson<sup>1</sup></h5></I>
+<I><h5>Rachael DiSciullo<sup>1</sup>, Robert R. Fitak<sup>2</sup>, Anna Forsman<sup>2</sup>, Scott Sakaluk<sup>1</sup>, Charles Thompson<sup>1</sup></h5></I>
 
 1. Department of Biology, Illinois State University, Normal, IL 61790 USA.
 2. Department of Biology, Genomics and Bioinformatics Cluster, University of Central Florida, Orlando, FL 32816 USA.
