@@ -70,7 +70,7 @@ _Parameters Explained:_
 - --cut_window_size=4 :: window size for the trimming
 - --cut_mean_quality=20 :: mean base score across the window required, or else trim the last base
 - --qualified_quality_phred=20 :: minimum base quality score to keep
-- --average_qual 20
+- --average_qual=20 :: remove read of the average quality across all bases is < 20
 - --unqualified_percent_limit=30 :: Percent of bases allowed to be less than q in a read
 - --n_base_limit=5 :: if one read's number of N bases is >5, then this read pair is discarded
 - --length_required=50 :: minimum read length to keep after trimming
