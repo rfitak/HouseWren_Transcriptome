@@ -1,11 +1,13 @@
 # Cleaning the Raw Sequencing Reads
 This section will start with the raw sequencing data and perform a series a cleaning steps to prepare the sequences for the transcriptome assembly.  The various steps include:
 1.  Filtering low-quality reads, Trimming low-quality bases, adapter identification and removal
-    - Program: [fastp](https://github.com/OpenGene/fastp) for paired-end reads   
-2.  Removing reads that map conclusively to the American Shad mitochondrial genome
+    - Program: [fastp](https://github.com/OpenGene/fastp) for paired-end reads 
+2.  Correcting for sequencing errors
+    - Program: [rcorrector](https://github.com/mourisl/Rcorrector)
+3.  Removing reads that map conclusively to the mitochondrial genome
     - A mitogenome is already available, so we want to minimize their presence
     - Program [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) for the mapping
-6.  Kmer counting and Error-correcting the sequencing reads
+4.  Kmer counting and Error-correcting the sequencing reads
     - Program: [musket v1.1](http://musket.sourceforge.net/homepage.htm)
 
 ### Raw Data Summary:
@@ -200,4 +202,16 @@ HTML report: HOWR-2.html
 
 fastp --in1 HOWR-2_R1_001.fastq.gz --in2 HOWR-2_R2_001.fastq.gz --out1 HOWR-2_cleaned.R1.fastq.gz --out2 HOWR-2_cleaned.R2.fastq.gz --detect_adapter_for_pe --adapter_fasta /home/rfitak/.bin/adapters.fa --cut_front --cut_tail --cut_window_size=4 --cut_mean_quality=20 --qualified_quality_phred=20 --average_qual 20 --unqualified_percent_limit=30 --n_base_limit=5 --length_required=50 --low_complexity_filter --complexity_threshold=30 --overrepresentation_analysis --trim_poly_x --poly_x_min_len 10 --html=HOWR-2.html --json=.json --report_title=HOWR-2 --thread=16 
 fastp v0.20.0, time used: 3031 seconds
+```
+
+## Step 2: Correcting for sequencing errors
+[Rcorrector vce5d06b](https://github.com/mourisl/Rcorrector) is a kmer-based error correction method for RNA-seq data. The error-correction context differs substanntially in RNA-seq data from whole-genome sequencing (WGS) data, thus requires specific correction procedures.  Methds like _rcorrector_ can significantly improve downstream RNA-seq data analysis, especially if used to produce a _de novo_ transcriptome assembly.  The publication describing _rcorrector_ can be found here:
+Song L, Florea L (2015) Rcorrector: Efficient and accurate error correction for Illumina RNA-seq reads. _GigaScience_ 4:48. https://doi.org/10.1186/s13742-015-0089-y
+
+_Installation:_
+```bash
+# Install fastp using git
+git clone https://github.com/mourisl/rcorrector.git
+cd rcorrector/
+make
 ```
