@@ -132,7 +132,6 @@ Insert size peak (evaluated by paired-end reads): 150
 JSON report: HOWR-1.json
 HTML report: HOWR-1.html
 
-fastp --in1=HOWR-1_R1_001.fastq.gz --in2=HOWR-1_R2_001.fastq.gz --out1=HOWR-1_cleaned.R1.fastq.gz --out2=HOWR-1_cleaned.R2.fastq.gz --adapter_fasta=/home/rfitak/.bin/adapters.fa --cut_front --cut_tail --cut_window_size=4 --cut_mean_quality=20 --qualified_quality_phred=20 --average_qual=20 --unqualified_percent_limit=30 --n_base_limit=5 --length_required=50 --low_complexity_filter --complexity_threshold=30 --overrepresentation_analysis --trim_poly_x --poly_x_min_len=10 --html=HOWR-1.html --json=.json --report_title=HOWR-1 --thread=16 
 fastp v0.20.0, time used: 7621 seconds
 ```
 
@@ -180,8 +179,7 @@ Insert size peak (evaluated by paired-end reads): 150
 
 JSON report: HOWR-2.json
 HTML report: HOWR-2.html
-
-fastp --in1=HOWR-2_R1_001.fastq.gz --in2=HOWR-2_R2_001.fastq.gz --out1=HOWR-2_cleaned.R1.fastq.gz --out2=HOWR-2_cleaned.R2.fastq.gz --adapter_fasta=/home/rfitak/.bin/adapters.fa --cut_front --cut_tail --cut_window_size=4 --cut_mean_quality=20 --qualified_quality_phred=20 --average_qual=20 --unqualified_percent_limit=30 --n_base_limit=5 --length_required=50 --low_complexity_filter --complexity_threshold=30 --overrepresentation_analysis --trim_poly_x --poly_x_min_len=10 --html=HOWR-2.html --json=.json --report_title=HOWR-2 --thread=16 
+ 
 fastp v0.20.0, time used: 3220 seconds
 ```
 
