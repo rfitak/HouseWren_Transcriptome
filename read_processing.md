@@ -5,10 +5,6 @@ This section will start with the raw sequencing data and perform a series a clea
 2.  Correcting for sequencing errors
     - Program: [rcorrector](https://github.com/mourisl/Rcorrector)
 3.  Removing reads that map conclusively to the mitochondrial genome
-    - A mitogenome is already available, so we want to minimize their presence
-    - Program [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) for the mapping
-4.  Kmer counting and Error-correcting the sequencing reads
-    - Program: [musket v1.1](http://musket.sourceforge.net/homepage.htm)
 
 ### Raw Data Summary:
 
