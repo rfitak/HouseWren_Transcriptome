@@ -37,18 +37,17 @@ name="HOWR-1"
 
 # Run fastp cleaning
 fastp \
-   --in1 ${name}_R1_001.fastq.gz \
-   --in2 ${name}_R2_001.fastq.gz \
-   --out1 ${name}_cleaned.R1.fastq.gz \
-   --out2 ${name}_cleaned.R2.fastq.gz \
-   --detect_adapter_for_pe \
-   --adapter_fasta /home/rfitak/.bin/adapters.fa \
+   --in1=${name}_R1_001.fastq.gz \
+   --in2=${name}_R2_001.fastq.gz \
+   --out1=${name}_cleaned.R1.fastq.gz \
+   --out2=${name}_cleaned.R2.fastq.gz \
+   --adapter_fasta=adapters.fa \
    --cut_front \
    --cut_tail \
    --cut_window_size=4 \
    --cut_mean_quality=20 \
    --qualified_quality_phred=20 \
-   --average_qual 20 \
+   --average_qual=20 \
    --unqualified_percent_limit=30 \
    --n_base_limit=5 \
    --length_required=50 \
@@ -56,7 +55,7 @@ fastp \
    --complexity_threshold=30 \
    --overrepresentation_analysis \
    --trim_poly_x \
-   --poly_x_min_len 10 \
+   --poly_x_min_len=10 \
    --html=${name}.html \
    --json=${nname}.json \
    --report_title="$name" \
@@ -65,8 +64,7 @@ fastp \
 _Parameters Explained:_
 - --in1/--in2 :: input forward and reverse read files, recognizes gzip
 - --out1/-out2 :: output forward and reverse read files, recognizes gzip
-- --detect_adapter_for_pe :: enable PE adapter trimming
-- --adapter_fasta :: a file of known Illumina adapters to trim
+- --adapter_fasta :: a file of known Illumina adapters to trim, see [adapters.fa](./Data/adapters.fa)
 - --cut_front :: enable a 5' sliding window trimmer, like trimmomatic
 - --cut_tail :: enable a 3' sliding window trimmer, like trimmomatic
 - --cut_window_size=4 :: window size for the trimming
