@@ -189,7 +189,7 @@ Song L, Florea L (2015) Rcorrector: Efficient and accurate error correction for 
 
 _Installation:_
 ```bash
-# Install fastp using git
+# Install Rcorrector using git
 git clone https://github.com/mourisl/rcorrector.git
 cd rcorrector/
 make
