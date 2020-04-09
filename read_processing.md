@@ -30,7 +30,7 @@ make
 ```
 
 _Run fastp_  
-An example run is shown below, please see the scripts [fastp_PE500.sh](./Data/fastp_PE500.sh), [fastp_MP5k.sh](fastp_MP5k.sh), and [fastp_MP10k.sh](./Data/fastp_MP10k.sh) for more details on Job information.
+Only sample HOWR-1 is shown, the exact same code was repeated for HOWR-2 (`name="HOWR-2"`).
 ```bash
 # Assign names to each sample
 name="HOWR-1"
@@ -86,6 +86,7 @@ _See the Output HTML/PDF Files from ```fastp``` below:_
 ### Output Summary
 _HOWR-1 Reads_
 ```
+# HOWR-1 PE reads
 Detecting adapter sequence for read1...
 >Illumina TruSeq Adapter Read 1
 AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
