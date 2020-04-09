@@ -1,4 +1,5 @@
 <h3><p align="center">Supplementary Methods for:</p></h3
+
 <h2><p align="center">The <i>de novo</i> assembly of the house wren (<i>Troglodytes aedon</i>) trascriptome</p></h2>
 
 <I><h5>Rachael DiSciullo<sup>1</sup>, Robert R. Fitak<sup>2</sup>, Anna Forsman<sup>2</sup>, Scott Sakaluk<sup>2</sup>, Charles Thompson<sup>1</sup></h5></I>
