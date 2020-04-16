@@ -221,4 +221,4 @@ _Parameters Explained:_
 - -2 :: comma separated list of reverse read files (PE reads), recognizes gzip
 - -k :: k-mer length, default=23
 - -t :: number of threads
-- verbose :: verbose output in case de-bugging is needed.
+- -verbose :: verbose output in case de-bugging is needed.
