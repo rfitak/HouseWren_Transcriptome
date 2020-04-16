@@ -183,8 +183,20 @@ HTML report: HOWR-2.html
 fastp v0.20.0, time used: 3220 seconds
 ```
 
+### After read cleaning:
+
+| Name | Type | # Paired Reads | # Bases | Q20 bases | Q30 Bases |
+| --- | --- | --- | --- | --- | --- |
+| HOWR-1 | Raw sequences | 350,315,944 | 105,094,783,200 | 97.6% | 94.0% |
+| HOWR-1 | Cleaned sequences | 340,474,459 | 95,200,473,185 | 98.4% | 95.3% |
+| HOWR-2 | Raw sequences | 149,747,741 | 44,924,322,300 | 97.1% | 93.6% |
+| HOWR-2 | Cleaned sequences | 141,658,829 | 38,554,266,721 | 98.3% | 95.5% |
+| __Total__ | Cleaned sequences | 482,133,288 | 133,754,739,906 | 98.4% | 95.4% |
+
+<br>
+
 ## Step 2: Correcting for sequencing errors
-[Rcorrector vce5d06b](https://github.com/mourisl/Rcorrector) is a kmer-based, error-correction method for RNA-seq data. The error-correction context differs substantially in RNA-seq data from whole-genome sequencing (WGS) data, thus requiring specific correction procedures.  Methods like _rcorrector_ can significantly improve downstream RNA-seq data analysis, especially if used to produce a _de novo_ transcriptome assembly.  The publication describing _rcorrector_ can be found here:  
+[Rcorrector v1.0.4 ce5d06b](https://github.com/mourisl/Rcorrector) is a kmer-based, error-correction method for RNA-seq data. The error-correction context differs substantially in RNA-seq data from whole-genome sequencing (WGS) data, thus requiring specific correction procedures.  Methods like _rcorrector_ can significantly improve downstream RNA-seq data analysis, especially if used to produce a _de novo_ transcriptome assembly.  The publication describing _rcorrector_ can be found here:  
 Song L, Florea L (2015) Rcorrector: Efficient and accurate error correction for Illumina RNA-seq reads. _GigaScience_ 4:48. https://doi.org/10.1186/s13742-015-0089-y
 
 _Installation:_
@@ -194,3 +206,19 @@ git clone https://github.com/mourisl/rcorrector.git
 cd rcorrector/
 make
 ```
+
+_Run rcorrector_
+```bash
+run_rcorrector.pl \
+   -1 HOWR-1_cleaned.R1.fastq.gz,HOWR-2_cleaned.R1.fastq.gz \
+   -2 HOWR-1_cleaned.R2.fastq.gz,HOWR-2_cleaned.R2.fastq.gz \
+   -k 23 \
+   -t 16 \
+   -verbose
+```
+_Parameters Explained:_
+- -1 :: comma separated list of forward read files (PE reads), recognizes gzip
+- -2 :: comma separated list of reverse read files (PE reads), recognizes gzip
+- -k :: k-mer length, default=23
+- -t :: number of threads
+- verbose :: verbose output in case de-bugging is needed.
