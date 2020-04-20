@@ -29,7 +29,7 @@ ___This GitHub repository contains a summary of the various code, software, and 
 | Program | Version | Citation |
 | --- | --- | --- |
 | FASTP | 0.20.0 | [Chen et al. fastp: an ultra-fast all-in-one FASTQ preprocessor. Bioinformatics 34, i884–i890 (2018).](https://doi.org/10.1093/bioinformatics/bty560) |
-| RCORRECTOR | ce5d06b | [Song L, Florea L. Rcorrector: Efficient and accurate error correction for Illumina RNA-seq reads. GigaScience 4, 48 (2015).](https://doi.org/10.1186/s13742-015-0089-y) |
+| RCORRECTOR | 1.0.4 ce5d06b | [Song L, Florea L. Rcorrector: Efficient and accurate error correction for Illumina RNA-seq reads. GigaScience 4, 48 (2015).](https://doi.org/10.1186/s13742-015-0089-y) |
 | BWA | 0.6.2 | Li, H. & Durbin, R. Fast and accurate short read alignment with Burrows-Wheeler transform. Bioinformatics 25, 1754-1760 (2009). |
 | SAMTOOLS | 0.1.19 | Li, H. et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics 25, 2078-2079 (2009). |
 | VCFTOOLS | 0.1.12b | Danecek P, Auton A, Abecasis G, Albers CA, Banks E, DePristo MA, et al. 2011. The variant call format and VCFtools. Bioinformatics. 27:2156–8. |
