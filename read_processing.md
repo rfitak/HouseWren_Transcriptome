@@ -213,12 +213,22 @@ run_rcorrector.pl \
    -1 HOWR-1_cleaned.R1.fastq.gz,HOWR-2_cleaned.R1.fastq.gz \
    -2 HOWR-1_cleaned.R2.fastq.gz,HOWR-2_cleaned.R2.fastq.gz \
    -k 23 \
-   -t 16 \
-   -verbose
+   -t 16
 ```
 _Parameters Explained:_
 - -1 :: comma separated list of forward read files (PE reads), recognizes gzip
 - -2 :: comma separated list of reverse read files (PE reads), recognizes gzip
 - -k :: k-mer length, default=23
 - -t :: number of threads
-- -verbose :: verbose output in case de-bugging is needed.
+
+_Output from Rcorrector_
+```bash
+Stored 713812866 kmers
+Weak kmer threshold rate: 0.027540 (estimated from 0.950/1 of the chosen kmers)
+Processed 964266576 reads
+	Corrected 319704705 bases.
+```
+This means 319704705 / 133754739906 = 0.24% of bases were corrected
+
+## Step 3: Remove read pairs with ann unfixable error.
+The step above uses `rcorrector` to identify erroneous k-mers, then correct them if possible.  However, sometimes `rcorrector` cannot correct ann erroneous k-mer, because it cannot identify a change that doesn't result in aanother rare k-mer.  As a result, with so miuch data, it is simply better to just eliminate these reads.  This saves not only disk space, but will speed up computational time and result in fewer assembly errors.
