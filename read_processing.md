@@ -228,7 +228,7 @@ Weak kmer threshold rate: 0.027540 (estimated from 0.950/1 of the chosen kmers)
 Processed 964266576 reads
 	Corrected 319704705 bases.
 ```
-This means 319704705 / 133754739906 = 0.24% of bases were corrected
+This means 319704705 / 133754739906 = __0.24%__ of bases were corrected
 
 ## Step 3: Remove read pairs with an unfixable error.
 The step above uses `rcorrector` to identify erroneous k-mers, then correct them if possible.  However, sometimes `rcorrector` cannot correct ann erroneous k-mer, because it cannot identify a change that doesn't result in another rare k-mer.  As a result, with so much data, it is simply better to just eliminate these reads.  This saves not only disk space, but will speed up computational time and result in fewer assembly errors.  We will use the python script `FilterUncorrectabledPEfastq.py` which can be obtained from Harvard Informatics' [TranscriptomeAssemblyTools](https://github.com/harvardinformatics/TranscriptomeAssemblyTools).
