@@ -231,4 +231,25 @@ Processed 964266576 reads
 This means 319704705 / 133754739906 = 0.24% of bases were corrected
 
 ## Step 3: Remove read pairs with ann unfixable error.
-The step above uses `rcorrector` to identify erroneous k-mers, then correct them if possible.  However, sometimes `rcorrector` cannot correct ann erroneous k-mer, because it cannot identify a change that doesn't result in aanother rare k-mer.  As a result, with so miuch data, it is simply better to just eliminate these reads.  This saves not only disk space, but will speed up computational time and result in fewer assembly errors.
+The step above uses `rcorrector` to identify erroneous k-mers, then correct them if possible.  However, sometimes `rcorrector` cannot correct ann erroneous k-mer, because it cannot identify a change that doesn't result in aanother rare k-mer.  As a result, with so miuch data, it is simply better to just eliminate these reads.  This saves not only disk space, but will speed up computational time and result in fewer assembly errors.  We will use the python script `FilterUncorrectabledPEfastq.py` which can be obtained from Harvard Informatics' [TranscriptomeAssemblyTools](https://github.com/harvardinformatics/TranscriptomeAssemblyTools).
+
+_Run ddddd_
+```bash
+# Remove unfixable errors from HOWR-1
+FilterUncorrectabledPEfastq.py \
+   -1 HOWR-1_cleaned.R1.cor.fq.gz \
+   -2 HOWR-1_cleaned.R2.cor.fq.gz  \
+   -s HOWR-1 
+
+# Remove unfixable errors from HOWR-2
+FilterUncorrectabledPEfastq.py \
+   -1 HOWR-2_cleaned.R1.cor.fq.gz \
+   -2 HOWR-2_cleaned.R2.cor.fq.gz \
+   -s HOWR-2
+
+# Change all output read file names and compress them
+gzip ...
+gzip ...
+gzip ...
+gzip ...
+```
