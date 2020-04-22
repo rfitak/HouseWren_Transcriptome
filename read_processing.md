@@ -350,7 +350,7 @@ bowtie2 \
    --un-conc-gz HOWR-2_cleaned.cor.unfixrm.rmrRNA.fq.gz
 ```
 _Parameters explained_
-- -very-sensitive-local :: a present for bowtie2 to perform sensitive, local mapping of reads
+- -very-sensitive-local :: a preset for bowtie2 to perform sensitive, local mapping of reads
 - --phred33 :: standard quality score encoding of fastq files (default)
 - -x SILVA.fa :: reference genome prefix
 - -1 :: forward read file
