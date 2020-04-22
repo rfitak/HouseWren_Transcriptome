@@ -324,5 +324,37 @@ rm SILVA_138_SSUParc_tax_silva.fasta.gz SILVA_132_LSUParc_tax_silva.fasta.gz
 
 _Index the database and map reads - only retaining the unmapped reads_
 ```bash
+# Index SILVA reference
+bowtie2-build --threads 16 SILVA.fa SILVA.fa
 
+# Map HOWR-1
+bowtie2 \
+   --very-sensitive-local \
+   --phred33 \
+   -x SILVA.fa \
+   -1 HOWR-1_cleaned.R1.cor.unfixrm.fq.gz \
+   -2 HOWR-1_cleaned.R2.cor.unfixrm.fq.gz \
+   --nofw \
+   --threads 16 \
+   --un-conc-gz HOWR-1_cleaned.R1.cor.unfixrm.rmrRNA.fq.gz
+
+# Map HOWR-2
+bowtie2 \
+   --very-sensitive-local \
+   --phred33 \
+   -x SILVA.fa \
+   -1 HOWR-2_cleaned.R1.cor.unfixrm.fq.gz \
+   -2 HOWR-2_cleaned.R2.cor.unfixrm.fq.gz \
+   --nofw \
+   --threads 16 \
+   --un-conc-gz HOWR-2_cleaned.cor.unfixrm.rmrRNA.fq.gz
 ```
+_Parameters explained_
+- -very-sensitive-local :: a present for bowtie2 to perform sensitive, local mapping of reads
+- --phred33 :: standard quality score encoding of fastq files (default)
+- -x SILVA.fa :: reference genome prefix
+- -1 :: forward read file
+- -2 :: reverse read file
+- -nofw :: reads are in the 'RF' orientation as opposed to 'FR', since we used the dUTP stranded protocol
+- --threads 16 :: use 16 cpus
+- --un-conc-gz :: store unaligned, properly paired reads in this gzipped output file
