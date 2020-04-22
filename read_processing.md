@@ -248,8 +248,57 @@ FilterUncorrectabledPEfastq.py \
    -s HOWR-2
 
 # Change all output read file names and compress them
-gzip ...
-gzip ...
-gzip ...
-gzip ...
+gzip unfixrm_HOWR-1_cleaned.R1.cor.fq
+mv unfixrm_HOWR-1_cleaned.R1.cor.fq.gz HOWR-1_cleaned.R1.cor.unfixrm.fq.gz
+gzip unfixrm_HOWR-1_cleaned.R2.cor.fq
+mv unfixrm_HOWR-1_cleaned.R2.cor.fq.gz HOWR-1_cleaned.R2.cor.unfixrm.fq.gz
+gzip unfixrm_HOWR-2_cleaned.R1.cor.fq
+mv unfixrm_HOWR-2_cleaned.R1.cor.fq.gz HOWR-2_cleaned.R1.cor.unfixrm.fq.gz
+gzip unfixrm_HOWR-2_cleaned.R2.cor.fq
+mv unfixrm_HOWR-2_cleaned.R2.cor.fq.gz HOWR-2_cleaned.R2.cor.unfixrm.fq.gz
 ```
+
+_Output from FilterUncorrectabledPEfastq.py_
+```bash
+# Output file: rmunfixable_HOWR-1.log
+total PE reads:340474459
+removed PE reads:6605775
+retained PE reads:333868684
+R1 corrected:75851187
+R2 corrected:68220420
+pairs corrected:103973135
+R1 unfixable:2036835
+R2 unfixable:2646289
+both reads unfixable:1922651
+
+# Output file: rmunfixable_HOWR-2.log
+total PE reads:141658829
+removed PE reads:3757435
+retained PE reads:137901394
+R1 corrected:32881899
+R2 corrected:29190921
+pairs corrected:43493718
+R1 unfixable:1298352
+R2 unfixable:1360213
+both reads unfixable:1098870
+```
+| Name | Type | # Paired Reads | # Bases |
+| --- | --- | --- | --- |
+| HOWR-1 | Raw sequences | 350,315,944 | 105,094,783,200 |
+| HOWR-1 | Cleaned sequences | 340,474,459 | 95,200,473,185 |
+| HOWR-1 | R1 corrected | 75,851,187 | NA |
+| HOWR-1 | R2 corrected | 68,220,420 | NA |
+| HOWR-1 | Pairs corrected | 103,973,135 | NA |
+| HOWR-1 | Retained | 333,868,684 | NA |
+| HOWR-2 | Raw sequences | 149,747,741 | 44,924,322,300 |
+| HOWR-2 | Cleaned sequences | 141,658,829 | 38,554,266,721 |
+| HOWR-2 | R1 corrected | 32,881,899 | NA |
+| HOWR-2 | R2 corrected | 29,190,921 | NA |
+| HOWR-2 | Pairs corrected | 43,493,718 | NA |
+| HOWR-2 | Retained | 137,901,394 | NA |
+| __Total__ | Cleaned + Corrected + Retained | 471,770,078 | NA |
+
+
+
+
+
