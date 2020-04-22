@@ -302,5 +302,24 @@ both reads unfixable:1098870
 | __Total__ | Cleaned + Corrected + Retained | 471,770,078 | 130,886,016,433 |
 
 ## Step 4: Remove rRNA contamination
-The library preparation protocol we used ([NEBNext® Ultra™ II Directional RNA Library Prep Kit for Illumina®](https://www.neb.com/products/e7760-nebnext-ultra-ii-directional-rna-library-prep-kit-for-illumina#Product%20Information)) is based off a dUTP protocol, which is essentially a poly(A) RNA enrinchment with strand specificity.  Depsite enriching for mRNA, numerous rRNA sequences easily make their way into the library, at times at high abundance.  Here, we will screen for rRNA sequences by comparing (mapping) our transcriptome read pairs to the SILVA](https://www.arb-silva.de) database.  Reads that match rRNA sequences will be removed, since we do not want them as part of our transcriptome and subsequent SNP calling.
+The library preparation protocol we used ([NEBNext® Ultra™ II Directional RNA Library Prep Kit for Illumina®](https://www.neb.com/products/e7760-nebnext-ultra-ii-directional-rna-library-prep-kit-for-illumina#Product%20Information)) is based off a dUTP protocol, which is essentially a poly(A) RNA enrinchment with strand specificity.  Depsite enriching for mRNA, numerous rRNA sequences easily make their way into the library, at times at high abundance.  Here, we will screen for rRNA sequences by comparing (mapping) our transcriptome read pairs to the [SILVA](https://www.arb-silva.de) database.  Reads that match rRNA sequences will be removed, since we do not want them as part of our transcriptome and subsequent SNP calling.
 
+_Download the SILVA database_
+```bash
+# Download the SILVA SSU Parc database (release 138)
+wget https://www.arb-silva.de/fileadmin/silva_databases/current/Exports/SILVA_138_SSUParc_tax_silva.fasta.gz
+
+# Download the SILVA LSU Parc database (release 132)
+wget https://www.arb-silva.de/fileadmin/silva_databases/release_132/Exports/SILVA_132_LSUParc_tax_silva.fasta.gz
+
+# Concatenate the two together
+zcat SILVA_138_SSUParc_tax_silva.fasta.gz SILVA_132_LSUParc_tax_silva.fasta.gz > SILVA.fa
+
+# Remove files not needed
+SILVA_138_SSUParc_tax_silva.fasta.gz SILVA_132_LSUParc_tax_silva.fasta.gz
+```
+
+_Index the database and map reads - only retaining the unmapped reads_
+```bash
+
+```
