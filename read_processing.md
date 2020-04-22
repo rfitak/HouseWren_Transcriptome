@@ -4,7 +4,10 @@ This section will start with the raw sequencing data and perform a series a clea
     - Program: [fastp](https://github.com/OpenGene/fastp) for paired-end reads 
 2.  Correcting for sequencing errors
     - Program: [rcorrector](https://github.com/mourisl/Rcorrector)
-3.  Removing reads that map conclusively to the mitochondrial genome
+3.  Removing read pairs with an unfixable error.
+    - Program: [FilterUncorrectabledPEfastq.py](https://github.com/harvardinformatics/TranscriptomeAssemblyTools).
+4.  Remove reads originating from rRNA.
+    - Program:  [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) alignment to the [SILVA](https://www.arb-silva.de) rRNA database.
 
 ### Raw Data Summary:
 
