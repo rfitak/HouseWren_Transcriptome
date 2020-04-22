@@ -292,11 +292,11 @@ both reads unfixable:1098870
 | HOWR-1 | R1 corrected | 75,851,187 | NA |
 | HOWR-1 | R2 corrected | 68,220,420 | NA |
 | HOWR-1 | Pairs corrected | 103,973,135 | NA |
-| HOWR-1 | Retained | 333,868,684 | NA |
+| HOWR-1 | Retained | 333,868,684 | 93,343,653,959 |
 | HOWR-2 | Raw sequences | 149,747,741 | 44,924,322,300 |
 | HOWR-2 | Cleaned sequences | 141,658,829 | 38,554,266,721 |
 | HOWR-2 | R1 corrected | 32,881,899 | NA |
 | HOWR-2 | R2 corrected | 29,190,921 | NA |
 | HOWR-2 | Pairs corrected | 43,493,718 | NA |
-| HOWR-2 | Retained | 137,901,394 | NA |
-| __Total__ | Cleaned + Corrected + Retained | 471,770,078 | NA |
+| HOWR-2 | Retained | 137,901,394 | 37,542,362,474 |
+| __Total__ | Cleaned + Corrected + Retained | 471,770,078 | 130,886,016,433 |
