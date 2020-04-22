@@ -297,8 +297,3 @@ both reads unfixable:1098870
 | HOWR-2 | Pairs corrected | 43,493,718 | NA |
 | HOWR-2 | Retained | 137,901,394 | NA |
 | __Total__ | Cleaned + Corrected + Retained | 471,770,078 | NA |
-
-
-
-
-
