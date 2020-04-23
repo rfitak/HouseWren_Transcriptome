@@ -336,7 +336,7 @@ bowtie2 \
    -2 HOWR-1_cleaned.R2.cor.unfixrm.fq.gz \
    --nofw \
    --threads 16 \
-   --un-conc-gz HOWR-1_cleaned.R1.cor.unfixrm.rmrRNA.fq.gz
+   --un-conc-gz HOWR-1_cleaned.cor.unfixrm.rmrRNA.fq.gz
 
 # Map HOWR-2
 bowtie2 \
@@ -358,3 +358,42 @@ _Parameters explained_
 - -nofw :: reads are in the 'RF' orientation as opposed to 'FR', since we used the dUTP stranded protocol
 - --threads 16 :: use 16 cpus
 - --un-conc-gz :: store unaligned, properly paired reads in this gzipped output file
+
+_Output of SILVA Mapping_
+```bash
+# HOWR-1
+333868684 reads; of these:
+  333868684 (100.00%) were paired; of these:
+    294288628 (88.15%) aligned concordantly 0 times
+    941490 (0.28%) aligned concordantly exactly 1 time
+    38638566 (11.57%) aligned concordantly >1 times
+    ----
+    294288628 pairs aligned concordantly 0 times; of these:
+      57054 (0.02%) aligned discordantly 1 time
+    ----
+    294231574 pairs aligned 0 times concordantly or discordantly; of these:
+      588463148 mates make up the pairs; of these:
+        587241390 (99.79%) aligned 0 times
+        550714 (0.09%) aligned exactly 1 time
+        671044 (0.11%) aligned >1 times
+12.06% overall alignment rate
+```
+
+### Final Table of reads ready for assembly in Trinity!
+| Name | Type | # Paired Reads | # Bases |
+| --- | --- | --- | --- |
+| HOWR-1 | Raw sequences | 350,315,944 | 105,094,783,200 |
+| HOWR-1 | Cleaned sequences | 340,474,459 | 95,200,473,185 |
+| HOWR-1 | R1 corrected | 75,851,187 | NA |
+| HOWR-1 | R2 corrected | 68,220,420 | NA |
+| HOWR-1 | Pairs corrected | 103,973,135 | NA |
+| HOWR-1 | Retained | 333,868,684 | 93,343,653,959 |
+| HOWR-1 | Retained + rRNA removed | 294,288,628 | 82,267,851,965 |
+| HOWR-2 | Raw sequences | 149,747,741 | 44,924,322,300 |
+| HOWR-2 | Cleaned sequences | 141,658,829 | 38,554,266,721 |
+| HOWR-2 | R1 corrected | 32,881,899 | NA |
+| HOWR-2 | R2 corrected | 29,190,921 | NA |
+| HOWR-2 | Pairs corrected | 43,493,718 | NA |
+| HOWR-2 | Retained | 137,901,394 | 37,542,362,474 |
+| HOWR-2 | Retained + rRNA removed | xxxx | xxxx |
+| __Total__ | Cleaned + Corrected + Retained | xxx | xxx |
