@@ -11,7 +11,7 @@
 <p align="center">
   <img src="images/DiSciullo_Image of Research at Illinois State 2020_image.jpg" alt="House Wren" width="500">
 </p>
-<p align="center"><sup> Photo of a male house wren (<i>Troglodytes aedon</i>) singing.  Photo copyrighted by Rachael DiSciullo, please do not distribute without permission.</sup>
+<p align="center"><sup>Photo of a male house wren (<i>Troglodytes aedon</i>) singing.  Photo copyrighted by Rachael DiSciullo, please do not use or distribute without permission.</sup>
 </p>
 
 <br>
@@ -28,7 +28,7 @@ ___This GitHub repository contains a summary of the various code, software, and 
  
 [Read processing, cleaning, and error-correction](./read_processing.md)
 
-[de novo Assembly using Trinity](./assembly.md)
+[de novo assembly using Trinity](./assembly.md)
 
 [SNP Calling - including base and variant quality score recalibrations](./SNP-calling.md)
 
