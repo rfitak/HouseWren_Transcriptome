@@ -28,6 +28,8 @@ ___This GitHub repository contains a summary of the various code, software, and 
  
 [Read processing, cleaning, and error-correction](./read_processing.md)
 
+[de novo Assembly using Trinity](./assembly.md)
+
 [SNP Calling - including base and variant quality score recalibrations](./SNP-calling.md)
 
 </div>
