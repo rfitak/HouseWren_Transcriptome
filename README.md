@@ -10,7 +10,7 @@
 
 <p align="center">
   <img src="images/DiSciullo_Image of Research at Illinois State 2020_image.jpg" alt="House Wren" width="500">
-  <sup> Photo of a male house wren (<i>Troglodytes aedon</i>) singing.  Photo copyrighted by Rachael DiSciullo, please do not distribute without permission.
+  <sup> Photo of a male house wren (<i>Troglodytes aedon</i>) singing.  Photo copyrighted by Rachael DiSciullo, please do not distribute without permission.</sup>
 </p>
 
 <br>
