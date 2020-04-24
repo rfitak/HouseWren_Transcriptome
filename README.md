@@ -5,9 +5,13 @@
 
 1. Department of Biology, Illinois State University, Normal, IL 61790 USA.
 2. Department of Biology, Genomics and Bioinformatics Cluster, University of Central Florida, Orlando, FL 32816 USA.
+
 <br>
 
-<img src="images/DiSciullo_Image of Research at Illinois State 2020_image.jpg" alt="House Wren" align="center" width="50%">
+<p align="center">
+  <img src="images/DiSciullo_Image of Research at Illinois State 2020_image.jpg" alt="House Wren" width="300">
+</p>
+
 <br>
 ***
 ___This GitHub repository contains a summary of the various code, software, and data analysis pipelines used for the aforementioned study of the house wren. The contents represented here are only to be used as an example and not intended to be comeprehensive. The authors make no representation about the suitability or accuracy of this code, software, or data for any purpose, and make no warranties, either expressed or implied, for a particular purpose or that the use of this software or data will not infringe any third party patents, copyrights, trademarks, or other rights. The code, software and data are provided "as is". All content is hereby registered under the GNU General Public License v3.0, see [LICENSE](./LICENSE). Any publication that significantly relies upon the use of the content generated herein shall appropriately cite:___
