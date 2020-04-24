@@ -19,7 +19,7 @@ This section will start with the raw sequencing data and perform a series a clea
 
 
 ## Step 1: Read trimming and filtering
-Here the new software [fastp v0.20.0](https://github.com/OpenGene/fastp) was used to trim all reads. It combines a QC (similar to FastQC) along with various trimming and filtering functions. The publication can be found here:  
+Here the software [fastp v0.20.0](https://github.com/OpenGene/fastp) is used to trim all reads. It combines a QC (similar to FastQC) along with various trimming and filtering functions. The publication can be found here:  
 Chen S, Zhou Y, Chen Y, Gu (2018) fastp: an ultra-fast all-in-one FASTQ preprocessor. _Bioinformatics_ 34(17):i884–i890. https://doi.org/10.1093/bioinformatics/bty560
 
 _Installation:_
@@ -302,7 +302,7 @@ both reads unfixable:1098870
 | __Total__ | Cleaned + Corrected + Retained | 471,770,078 | 130,886,016,433 |
 
 ## Step 4: Remove rRNA contamination
-The library preparation protocol we used ([NEBNext® Ultra™ II Directional RNA Library Prep Kit for Illumina®](https://www.neb.com/products/e7760-nebnext-ultra-ii-directional-rna-library-prep-kit-for-illumina#Product%20Information)) is based off a dUTP protocol, which is essentially a poly(A) RNA enrinchment with strand specificity.  Depsite enriching for mRNA, numerous rRNA sequences easily make their way into the library, at times at high abundance.  Here, we will screen for rRNA sequences by comparing (mapping) our transcriptome read pairs to the [SILVA](https://www.arb-silva.de) database.  Reads that match rRNA sequences will be removed, since we do not want them as part of our transcriptome and subsequent SNP calling.
+The library preparation protocol we used ([NEBNext® Ultra™ II Directional RNA Library Prep Kit for Illumina®](https://www.neb.com/products/e7760-nebnext-ultra-ii-directional-rna-library-prep-kit-for-illumina#Product%20Information)) is based off a dUTP protocol, which is essentially a poly(A) RNA enrinchment with strand specificity.  Despite enriching for mRNA, numerous rRNA sequences easily make their way into the library, at times at high abundance.  Here, we will screen for rRNA sequences by comparing (mapping) our transcriptome read pairs to the [SILVA](https://www.arb-silva.de) database.  Reads that match rRNA sequences will be removed, since we do not want them as part of our transcriptome and subsequent SNP calling.
 
 _Download and prepare the SILVA database_
 ```bash
@@ -377,6 +377,23 @@ _Output of SILVA Mapping_
         550714 (0.09%) aligned exactly 1 time
         671044 (0.11%) aligned >1 times
 12.06% overall alignment rate
+
+# HOWR-2
+137901394 reads; of these:
+  137901394 (100.00%) were paired; of these:
+    131713846 (95.51%) aligned concordantly 0 times
+    438011 (0.32%) aligned concordantly exactly 1 time
+    5749537 (4.17%) aligned concordantly >1 times
+    ----
+    131713846 pairs aligned concordantly 0 times; of these:
+      24956 (0.02%) aligned discordantly 1 time
+    ----
+    131688890 pairs aligned 0 times concordantly or discordantly; of these:
+      263377780 mates make up the pairs; of these:
+        262324346 (99.60%) aligned 0 times
+        293566 (0.11%) aligned exactly 1 time
+        759868 (0.29%) aligned >1 times
+4.89% overall alignment rate
 ```
 
 ### Final Table of reads ready for assembly in Trinity!
@@ -395,5 +412,5 @@ _Output of SILVA Mapping_
 | HOWR-2 | R2 corrected | 29,190,921 | NA |
 | HOWR-2 | Pairs corrected | 43,493,718 | NA |
 | HOWR-2 | Retained | 137,901,394 | 37,542,362,474 |
-| HOWR-2 | Retained + rRNA removed | xxxx | xxxx |
-| __Total__ | Cleaned + Corrected + Retained | xxx | xxx |
+| HOWR-2 | Retained + rRNA removed | 131,713,846 | 35,830,581,411 |
+| __Total__ | Cleaned + Corrected + Retained | 426,002,474 (85.2% of raw data) | 118,098,433,376 (78.7% of raw data) |
