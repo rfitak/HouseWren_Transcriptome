@@ -1,5 +1,5 @@
 # Annotating the House Wren Transcriptome
-This section perform several quality control assessments annd annotation of the _de novo_ transcriptome assembly completed in the [previous section](./assembly.md).  Although a fulll annotation is not necessary to identify SNPs for parentage analysis, a fully annotated transcriptome cann be submitted to the NCBI's TSA]() database and will be a useful resource for other researchers.
+This section perform several quality control assessments annd annotation of the _de novo_ transcriptome assembly completed in the [previous section](./assembly.md).  Although a fulll annotation is not necessary to identify SNPs for parentage analysis, a fully annotated transcriptome cann be submitted to the NCBI's [TSA](https://www.ncbi.nlm.nih.gov/genbank/tsa/) database and will be a useful resource for other researchers.
 
 ## Step 1: Assess assembly using Transrate
 
