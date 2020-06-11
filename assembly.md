@@ -21,3 +21,48 @@ singularity \
       --CPU 32 \
       --output `pwd`/trinity1
 ```
+
+_Get statistics from the final assembly_
+_All Trinity perl scripts from https://github.com/trinityrnaseq/trinityrnaseq_
+```bash
+# Get assembly stats
+TrinityStats.pl Trinity.fasta
+```
+_Output_
+```
+################################
+## Counts of transcripts, etc.
+################################
+Total trinity 'genes':	293691
+Total trinity transcripts:	564671
+Percent GC: 46.16
+
+########################################
+Stats based on ALL transcript contigs:
+########################################
+
+	Contig N10: 9873
+	Contig N20: 6500
+	Contig N30: 4685
+	Contig N40: 3430
+	Contig N50: 2457
+
+	Median contig length: 462
+	Average contig: 1082.80
+	Total assembled bases: 611426756
+
+
+#####################################################
+## Stats based on ONLY LONGEST ISOFORM per 'GENE':
+#####################################################
+
+	Contig N10: 7704
+	Contig N20: 4642
+	Contig N30: 2906
+	Contig N40: 1842
+	Contig N50: 1177
+
+	Median contig length: 364
+	Average contig: 725.45
+	Total assembled bases: 213058014
+```
