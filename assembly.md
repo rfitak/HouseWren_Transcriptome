@@ -67,3 +67,15 @@ Stats based on ALL transcript contigs:
 	Average contig: 725.45
 	Total assembled bases: 213058014
 ```
+
+## Step 2: Generate Super Transcripts
+Description: https://github.com/trinityrnaseq/trinityrnaseq/wiki/SuperTranscripts
+
+_Generate Super Transcripts file_
+```bash
+Trinity_gene_splice_modeler.py \
+   --trinity_fasta Trinity.fasta \
+   --out_prefix Trinity.SuperTrans \
+   --incl_malign \
+   --verbose
+```
