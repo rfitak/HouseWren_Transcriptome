@@ -1,6 +1,7 @@
 # Assembling the House Wren Transcriptome using Trinity
 This section focuses on generating the _de novo_ transcriptome assembly using the processed sequencing reads completed in the [previous section](./read_processing.md).  Afterwards, a series of cleaning, quality control, and annotation steps are performed prior to identifying SNPs.
 
+## Step 1:  Build transcriptome assembly
 _Download Trinity singularity container_
 ```bash
 wget https://data.broadinstitute.org/Trinity/TRINITY_SINGULARITY/trinityrnaseq.v2.9.1.simg
@@ -22,7 +23,7 @@ singularity \
       --output `pwd`/trinity1
 ```
 
-_Get statistics from the final assembly_
+_Get statistics from the final assembly_  
 _All Trinity perl scripts from https://github.com/trinityrnaseq/trinityrnaseq_
 ```bash
 # Get assembly stats
