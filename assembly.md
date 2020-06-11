@@ -69,7 +69,10 @@ Stats based on ALL transcript contigs:
 ```
 
 ## Step 2: Generate Super Transcripts
-Description: https://github.com/trinityrnaseq/trinityrnaseq/wiki/SuperTranscripts
+"SuperTranscripts provide a gene-like view of the transcriptional complexity of a gene. SuperTranscripts were originally defined by Nadia Davidson, Anthony Hawkins, and Alicia Oshlack as described in their publication [SuperTranscripts: a data driven reference for analysis and visualisation of transcriptome. Genome Biology, 2017](https://doi.org/10.1186/s13059-017-1284-1). SuperTranscripts are useful in the context of genome-free _de novo_ transcriptome assembly in that they provide a genome-like reference for studying aspects of the gene including differential transcript usage (aka. differential exon usage) and as a substrate for mapping reads and identifying allelic polymorphisms.
+
+A SuperTranscript is constructed by collapsing unique and common sequence regions among splicing isoforms into a single linear sequence."  
+From: https://github.com/trinityrnaseq/trinityrnaseq/wiki/SuperTranscripts
 
 _Generate Super Transcripts file_
 ```bash
