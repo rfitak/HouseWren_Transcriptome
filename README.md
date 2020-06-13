@@ -47,5 +47,8 @@ ___This GitHub repository contains a summary of the various code, software, and 
 | SILVA database | SSU:138, LSU:132 | [Quast C, Pruesse E, Yilmaz P, Gerken J, Schweer T, Yarza P, Peplies J, Glöckner FO. The SILVA ribosomal RNA gene database project: improved data processing and web-based tools. Nucleic Acids Research 41, D590-D596 (2013)](http://nar.oxfordjournals.org/content/41/D1/D590) |
 | TRINITY | 2.9.1 | [Grabherr, M., Haas, B., Yassour, M. et al. Full-length transcriptome assembly from RNA-Seq data without a reference genome. Nat Biotechnol 29, 644–652 (2011)](https://doi.org/10.1038/nbt.1883) |
 | SAMTOOLS | 1.9 | Li, H. et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics 25, 2078-2079 (2009). |
+| PICARD | 2.23.0 | [Picard Toolkit.” 2018. Broad Institute, GitHub Repository. http://broadinstitute.github.io/picard/; Broad Institute](https://broadinstitute.github.io/picard/) |
+| GATK | 4.1.7.0 | Van der Auwera, G.A., et al. From FastQ data to high‐confidence variant calls: the Genome Analysis Toolkit best practices pipeline. Current Protocols in Bioinformatics, 43: 11.10.1-11.10.33 (2013).](https://doi.org/10.1002/0471250953.bi1110s43) |
+| STAR | 2.7.3a | Li, H. et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics 25, 2078-2079 (2009). |
 | VCFTOOLS | 0.1.12b | Danecek P, Auton A, Abecasis G, Albers CA, Banks E, DePristo MA, et al. 2011. The variant call format and VCFtools. Bioinformatics. 27:2156–8. |
 
