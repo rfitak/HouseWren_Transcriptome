@@ -68,7 +68,23 @@ Stats based on ALL transcript contigs:
 	Total assembled bases: 213058014
 ```
 
-## Step 2: Generate Super Transcripts
+## Step 2: Assembly assessment using Transrate
+From the [Transrate website](http://hibberdlab.com/transrate/):  
+"Transrate is software for _de-novo_ transcriptome assembly quality analysis. It examines your assembly in detail and compares it to experimental evidence such as the sequencing reads, reporting quality scores for contigs and assemblies. This allows you to choose between assemblers and parameters, filter out the bad contigs from an assembly, and help decide when to stop trying to improve the assembly"
+
+_Run transrate v1.0.3_
+```bash
+transrate \
+   --assembly=Trinity.fasta \
+   --left=HOWR-1_cleaned.cor.unfixrm.rmrRNA.fq.1.gz,HOWR-2_cleaned.cor.unfixrm.rmrRNA.fq.1.gz \
+   --right=HOWR-1_cleaned.cor.unfixrm.rmrRNA.fq.2.gz,HOWR-2_cleaned.cor.unfixrm.rmrRNA.fq.2.gz \
+   --threads=32 \
+   --output=. \
+   --loglevel=info
+```
+
+
+## Step 3: Generate Super Transcripts
 "SuperTranscripts provide a gene-like view of the transcriptional complexity of a gene. SuperTranscripts were originally defined by Nadia Davidson, Anthony Hawkins, and Alicia Oshlack as described in their publication [SuperTranscripts: a data driven reference for analysis and visualisation of transcriptome. Genome Biology, 2017](https://doi.org/10.1186/s13059-017-1284-1). SuperTranscripts are useful in the context of genome-free _de novo_ transcriptome assembly in that they provide a genome-like reference for studying aspects of the gene including differential transcript usage (aka. differential exon usage) and as a substrate for mapping reads and identifying allelic polymorphisms.
 
 A SuperTranscript is constructed by collapsing unique and common sequence regions among splicing isoforms into a single linear sequence."  
