@@ -83,6 +83,61 @@ transrate \
    --loglevel=info
 ```
 
+_Output_
+```
+[ INFO] 2020-06-24 08:32:14 : Contig metrics:
+[ INFO] 2020-06-24 08:32:14 : -----------------------------------
+[ INFO] 2020-06-24 08:32:14 : n seqs                       564671
+[ INFO] 2020-06-24 08:32:14 : smallest                        177
+[ INFO] 2020-06-24 08:32:14 : largest                       44898
+[ INFO] 2020-06-24 08:32:14 : n bases                   611426756
+[ INFO] 2020-06-24 08:32:14 : mean len                    1082.76
+[ INFO] 2020-06-24 08:32:14 : n under 200                     118
+[ INFO] 2020-06-24 08:32:14 : n over 1k                    140335
+[ INFO] 2020-06-24 08:32:14 : n over 10k                     4349
+[ INFO] 2020-06-24 08:32:14 : n with orf                   110569
+[ INFO] 2020-06-24 08:32:14 : mean orf percent              35.54
+[ INFO] 2020-06-24 08:32:14 : n90                             376
+[ INFO] 2020-06-24 08:32:14 : n70                            1032
+[ INFO] 2020-06-24 08:32:14 : n50                            2457
+[ INFO] 2020-06-24 08:32:14 : n30                            4686
+[ INFO] 2020-06-24 08:32:14 : n10                            9877
+[ INFO] 2020-06-24 08:32:14 : gc                             0.46
+[ INFO] 2020-06-24 08:32:14 : bases n                           0
+[ INFO] 2020-06-24 08:32:14 : proportion n                    0.0
+[ INFO] 2020-06-24 08:32:14 : Contig metrics done in 110 seconds
+[ INFO] 2020-06-24 08:32:14 : Calculating read diagnostics...
+[ INFO] 2020-06-24 13:43:05 : Read mapping metrics:
+[ INFO] 2020-06-24 13:43:05 : -----------------------------------
+[ INFO] 2020-06-24 13:43:05 : fragments                 426002474
+[ INFO] 2020-06-24 13:43:05 : fragments mapped           42544746
+[ INFO] 2020-06-24 13:43:05 : p fragments mapped              0.1
+[ INFO] 2020-06-24 13:43:05 : good mappings              26280824
+[ INFO] 2020-06-24 13:43:05 : p good mapping                 0.06
+[ INFO] 2020-06-24 13:43:05 : bad mappings               16263922
+[ INFO] 2020-06-24 13:43:05 : potential bridges                 0
+[ INFO] 2020-06-24 13:43:05 : bases uncovered           445334069
+[ INFO] 2020-06-24 13:43:05 : p bases uncovered              0.73
+[ INFO] 2020-06-24 13:43:05 : contigs uncovbase            420242
+[ INFO] 2020-06-24 13:43:05 : p contigs uncovbase            0.74
+[ INFO] 2020-06-24 13:43:05 : contigs uncovered            564671
+[ INFO] 2020-06-24 13:43:05 : p contigs uncovered             1.0
+[ INFO] 2020-06-24 13:43:05 : contigs lowcovered           564671
+[ INFO] 2020-06-24 13:43:05 : p contigs lowcovered            1.0
+[ INFO] 2020-06-24 13:43:05 : contigs segmented             40990
+[ INFO] 2020-06-24 13:43:05 : p contigs segmented            0.07
+[ INFO] 2020-06-24 13:43:05 : Read metrics done in 18651 seconds
+[ INFO] 2020-06-24 13:43:05 : No reference provided, skipping comparative diagnostics
+[ INFO] 2020-06-24 13:44:18 : TRANSRATE ASSEMBLY SCORE     0.0047
+[ INFO] 2020-06-24 13:44:18 : -----------------------------------
+[ INFO] 2020-06-24 13:44:18 : TRANSRATE OPTIMAL SCORE      0.0177
+[ INFO] 2020-06-24 13:44:18 : TRANSRATE OPTIMAL CUTOFF     0.1739
+[ INFO] 2020-06-24 13:44:19 : good contigs                 259399
+[ INFO] 2020-06-24 13:44:19 : p good contigs                 0.46
+[ INFO] 2020-06-24 13:44:19 : Writing contig metrics for each contig to /home/fitaklab/data/HOUSE_WREN/TRANSRATE/Trinity/contigs.csv
+[ INFO] 2020-06-24 13:45:57 : Writing analysis results to assemblies.csv
+```
+
 
 ## Step 3: Generate Super Transcripts
 "SuperTranscripts provide a gene-like view of the transcriptional complexity of a gene. SuperTranscripts were originally defined by Nadia Davidson, Anthony Hawkins, and Alicia Oshlack as described in their publication [SuperTranscripts: a data driven reference for analysis and visualisation of transcriptome. Genome Biology, 2017](https://doi.org/10.1186/s13059-017-1284-1). SuperTranscripts are useful in the context of genome-free _de novo_ transcriptome assembly in that they provide a genome-like reference for studying aspects of the gene including differential transcript usage (aka. differential exon usage) and as a substrate for mapping reads and identifying allelic polymorphisms.
