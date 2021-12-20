@@ -1,0 +1,32 @@
+Building a LARGE index
+333868684 reads; of these:
+  333868684 (100.00%) were paired; of these:
+    294288628 (88.15%) aligned concordantly 0 times
+    941490 (0.28%) aligned concordantly exactly 1 time
+    38638566 (11.57%) aligned concordantly >1 times
+    ----
+    294288628 pairs aligned concordantly 0 times; of these:
+      57054 (0.02%) aligned discordantly 1 time
+    ----
+    294231574 pairs aligned 0 times concordantly or discordantly; of these:
+      588463148 mates make up the pairs; of these:
+        587241390 (99.79%) aligned 0 times
+        550714 (0.09%) aligned exactly 1 time
+        671044 (0.11%) aligned >1 times
+12.06% overall alignment rate
+
+137901394 reads; of these:
+  137901394 (100.00%) were paired; of these:
+    131713846 (95.51%) aligned concordantly 0 times
+    438011 (0.32%) aligned concordantly exactly 1 time
+    5749537 (4.17%) aligned concordantly >1 times
+    ----
+    131713846 pairs aligned concordantly 0 times; of these:
+      24956 (0.02%) aligned discordantly 1 time
+    ----
+    131688890 pairs aligned 0 times concordantly or discordantly; of these:
+      263377780 mates make up the pairs; of these:
+        262324346 (99.60%) aligned 0 times
+        293566 (0.11%) aligned exactly 1 time
+        759868 (0.29%) aligned >1 times
+4.89% overall alignment rate

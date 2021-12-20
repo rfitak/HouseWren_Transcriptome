@@ -1,0 +1,13 @@
+Put the kmers into bloom filter
+jellyfish bc -m 23 -s 100000000 -C -t 32 -o tmp_5b5bb4712f69fbd121aa07b776678007.bc <(gzip -cd HOWR-1_cleaned.R1.fastq.gz) <(gzip -cd HOWR-2_cleaned.R1.fastq.gz) <(gzip -cd HOWR-1_cleaned.R2.fastq.gz) <(gzip -cd HOWR-2_cleaned.R2.fastq.gz) 
+Count the kmers in the bloom filter
+jellyfish count -m 23 -s 100000 -C -t 32 --bc tmp_5b5bb4712f69fbd121aa07b776678007.bc -o tmp_5b5bb4712f69fbd121aa07b776678007.mer_counts <(gzip -cd HOWR-1_cleaned.R1.fastq.gz) <(gzip -cd HOWR-2_cleaned.R1.fastq.gz) <(gzip -cd HOWR-1_cleaned.R2.fastq.gz) <(gzip -cd HOWR-2_cleaned.R2.fastq.gz) 
+Dump the kmers
+jellyfish dump -L 2 tmp_5b5bb4712f69fbd121aa07b776678007.mer_counts > tmp_5b5bb4712f69fbd121aa07b776678007.jf_dump
+Error correction
+/home/rfitak/.bin/rcorrector -k 23 -t 32  -p HOWR-1_cleaned.R1.fastq.gz HOWR-1_cleaned.R2.fastq.gz -p HOWR-2_cleaned.R1.fastq.gz HOWR-2_cleaned.R2.fastq.gz -c tmp_5b5bb4712f69fbd121aa07b776678007.jf_dump
+Stored 713812866 kmers
+Weak kmer threshold rate: 0.027540 (estimated from 0.950/1 of the chosen kmers)
+Bad quality threshold is ','
+Processed 964266576 reads
+	Corrected 319704705 bases.

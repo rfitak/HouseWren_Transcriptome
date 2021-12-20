@@ -1,0 +1,44 @@
+Read1 before filtering:
+total reads: 149747741
+total bases: 22462161150
+Q20 bases: 21896887478(97.4834%)
+Q30 bases: 21187597776(94.3257%)
+
+Read2 before filtering:
+total reads: 149747741
+total bases: 22462161150
+Q20 bases: 21719331733(96.693%)
+Q30 bases: 20860532350(92.8697%)
+
+Read1 after filtering:
+total reads: 141658829
+total bases: 19271163888
+Q20 bases: 18992644933(98.5547%)
+Q30 bases: 18513125388(96.0665%)
+
+Read2 aftering filtering:
+total reads: 141658829
+total bases: 19283102833
+Q20 bases: 18921388552(98.1242%)
+Q30 bases: 18312653502(94.9674%)
+
+Filtering result:
+reads passed filter: 283317658
+reads failed due to low quality: 7017686
+reads failed due to too many N: 20682
+reads failed due to too short: 6737414
+reads failed due to low complexity: 2402042
+reads with adapter trimmed: 144401586
+bases trimmed due to adapters: 4514773965
+reads with polyX in 3' end: 4433478
+bases trimmed in polyX tail: 344676081
+
+Duplication rate: 15.4203%
+
+Insert size peak (evaluated by paired-end reads): 150
+
+JSON report: .json
+HTML report: HOWR-2.html
+
+fastp --in1=HOWR-2_R1_001.fastq.gz --in2=HOWR-2_R2_001.fastq.gz --out1=HOWR-2_cleaned.R1.fastq.gz --out2=HOWR-2_cleaned.R2.fastq.gz --adapter_fasta=/home/rfitak/.bin/adapters.fa --cut_front --cut_tail --cut_window_size=4 --cut_mean_quality=20 --qualified_quality_phred=20 --average_qual=20 --unqualified_percent_limit=30 --n_base_limit=5 --length_required=50 --low_complexity_filter --complexity_threshold=30 --overrepresentation_analysis --trim_poly_x --poly_x_min_len=10 --html=HOWR-2.html --json=.json --report_title=HOWR-2 --thread=16 
+fastp v0.20.0, time used: 3220 seconds
