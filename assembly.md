@@ -201,3 +201,8 @@ Stats based on ALL transcript contigs:
 ```
 
 ## Summary Table
+
+| Assembly Name | # sequences | N50 (bp) | Total bases | GC % |
+| --- | --- | --- | --- | --- |
+| Trinity.fasta | 564,671 | 2,457 | 611,426,756 | 46.16% |
+| Trinity.SuperTrans.fasta | 293,691 | 1,408 | 234,652,073 | 45.01% |
