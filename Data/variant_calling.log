@@ -1,0 +1,90 @@
+2020-06-22 12:13:25,980 INFO run_variant_calling.root.main at 205 :
+	Generating SuperTranscript index.
+
+2020-06-22 12:13:25,981 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: samtools faidx /home/fitaklab/data/HOUSE_WREN/trinity1/Trinity.SuperTrans.fasta
+
+2020-06-22 12:13:27,653 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: touch /home/fitaklab/data/HOUSE_WREN/SNPS/Trinity.SuperTrans.fasta.gatk_chkpts/samtools_faidx_st.ok
+
+2020-06-22 12:13:27,670 INFO run_variant_calling.root.main at 216 :
+	Generating Picard dictionary.
+
+2020-06-22 12:13:27,672 INFO run_variant_calling.root.main at 239 :
+	Generating genome folder for STAR
+
+2020-06-22 12:13:27,673 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: mkdir star_genome_idx
+
+2020-06-22 12:13:27,679 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: touch /home/fitaklab/data/HOUSE_WREN/SNPS/Trinity.SuperTrans.fasta.gatk_chkpts/mkdir_star_genome_idx.ok
+
+2020-06-22 12:13:27,684 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: STAR --runThreadN 32 --runMode genomeGenerate --genomeDir star_genome_idx  --genomeFastaFiles /home/fitaklab/data/HOUSE_WREN/trinity1/Trinity.SuperTrans.fasta  --genomeSAindexNbases 13  --sjdbGTFfile /home/fitaklab/data/HOUSE_WREN/trinity1/Trinity.SuperTrans.gtf  --sjdbOverhang 150  --limitGenomeGenerateRAM 512000000000  
+
+2020-06-22 12:39:30,437 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: touch /home/fitaklab/data/HOUSE_WREN/SNPS/Trinity.SuperTrans.fasta.gatk_chkpts/star_genome_generate.ok
+
+2020-06-22 12:39:30,444 INFO run_variant_calling.root.main at 268 :
+	Running STAR alignment.
+
+2020-06-22 12:39:30,445 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: STAR --runThreadN 32 --genomeDir star_genome_idx  --runMode alignReads  --twopassMode Basic  --alignSJDBoverhangMin 10  --outSAMtype BAM SortedByCoordinate  --limitBAMsortRAM 512000000000  --readFilesIn /home/fitaklab/data/HOUSE_WREN/left.fq.gz /home/fitaklab/data/HOUSE_WREN/right.fq.gz --readFilesCommand 'gunzip -c' 
+
+2020-06-24 12:01:45,988 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: touch /home/fitaklab/data/HOUSE_WREN/SNPS/Trinity.SuperTrans.fasta.gatk_chkpts/star_aln.ok
+
+2020-06-24 12:01:46,201 INFO run_variant_calling.root.main at 294 :
+	Cleaning and Converting sam file with Picard-Tools.
+
+2020-06-24 12:01:46,203 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: java -jar /home/rfitak/.bin//picard.jar  AddOrReplaceReadGroups I=Aligned.sortedByCoord.out.bam O=rg_added_sorted.bam  VALIDATION_STRINGENCY=SILENT SO=coordinate RGID=id RGLB=library RGPL=platform RGPU=machine RGSM=sample
+
+2020-06-24 14:09:52,322 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: touch /home/fitaklab/data/HOUSE_WREN/SNPS/Trinity.SuperTrans.fasta.gatk_chkpts/add_read_groups.ok
+
+2020-06-24 14:09:52,375 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: java -jar /home/rfitak/.bin//picard.jar  MarkDuplicates I=rg_added_sorted.bam O=dedupped.bam CREATE_INDEX=true VALIDATION_STRINGENCY=SILENT M=output.metrics
+
+2020-06-24 18:35:10,945 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: touch /home/fitaklab/data/HOUSE_WREN/SNPS/Trinity.SuperTrans.fasta.gatk_chkpts/mark_dups.ok
+
+2020-06-24 18:35:10,963 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: java -jar /home/rfitak/.bin//picard.jar ValidateSamFile I=dedupped.bam IGNORE_WARNINGS=true MAX_OUTPUT=100000 IGNORE=MATE_NOT_FOUND O=dedupped.bam.validation
+
+2020-06-24 19:40:34,819 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: touch /home/fitaklab/data/HOUSE_WREN/SNPS/Trinity.SuperTrans.fasta.gatk_chkpts/bam_validate.ok
+
+2020-06-24 19:40:34,942 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: /home/rfitak/PROGRAMS/trinityrnaseq-v2.10.0/Analysis/SuperTranscripts/AllelicVariants/util/clean_bam.pl dedupped.bam dedupped.bam.validation dedupped.valid.bam
+
+2020-06-24 19:40:35,336 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: touch /home/fitaklab/data/HOUSE_WREN/SNPS/Trinity.SuperTrans.fasta.gatk_chkpts/make_valid_dedupped_bam.ok
+
+2020-06-24 19:40:35,342 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: java -jar /home/rfitak/PROGRAMS/gatk-4.1.7.0/gatk-package-4.1.7.0-local.jar SplitNCigarReads -R /home/fitaklab/data/HOUSE_WREN/trinity1/Trinity.SuperTrans.fasta -I dedupped.valid.bam -O splitNCigar.bam  --read-validation-stringency LENIENT
+
+2020-06-26 14:45:35,180 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: touch /home/fitaklab/data/HOUSE_WREN/SNPS/Trinity.SuperTrans.fasta.gatk_chkpts/splitNCigarReads.ok
+
+2020-06-26 14:45:35,276 INFO run_variant_calling.root.main at 351 :
+	Variant Calling using Haplotype Caller.
+
+2020-06-26 14:45:35,277 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: java -jar /home/rfitak/PROGRAMS/gatk-4.1.7.0/gatk-package-4.1.7.0-local.jar HaplotypeCaller -R /home/fitaklab/data/HOUSE_WREN/trinity1/Trinity.SuperTrans.fasta -I ./splitNCigar.bam -dont-use-soft-clipped-bases -stand-call-conf 20.0 -O output.vcf
+
+2020-06-29 15:44:39,262 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: touch /home/fitaklab/data/HOUSE_WREN/SNPS/Trinity.SuperTrans.fasta.gatk_chkpts/haplotypecaller.ok
+
+2020-06-29 15:44:39,384 INFO run_variant_calling.root.main at 368 :
+	Doing some basic filtering of vcf.
+
+2020-06-29 15:44:39,384 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: java -jar /home/rfitak/PROGRAMS/gatk-4.1.7.0/gatk-package-4.1.7.0-local.jar VariantFiltration -R /home/fitaklab/data/HOUSE_WREN/trinity1/Trinity.SuperTrans.fasta -V output.vcf -window 35 -cluster 3 --filter-name FS -filter "FS > 30.0" --filter-name QD -filter "QD < 2.0" -O filtered_output.vcf
+
+2020-06-29 15:48:47,621 INFO Pipeliner.Pipeliner.run_cmd at 19 :
+	Running: touch /home/fitaklab/data/HOUSE_WREN/SNPS/Trinity.SuperTrans.fasta.gatk_chkpts/variant_filt.ok
+
+2020-06-29 15:48:47,627 INFO run_variant_calling.root.main at 387 :
+	Done!
+
