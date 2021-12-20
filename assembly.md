@@ -1,5 +1,5 @@
 # Assembling the House Wren Transcriptome using Trinity
-This section focuses on generating the _de novo_ transcriptome assembly using the processed sequencing reads completed in the [previous section](./read_processing.md).  Afterwards, a series of cleaning, quality control, and assessment steps are performed prior to identifying SNPs.
+This section focuses on generating the _de novo_ transcriptome assembly using the processed sequencing reads completed in the [previous section](./read_processing.md).  Afterwards, the assembled transcripts, which represent various isoforms, fragments, and chimeras of transcripts are combined/collapsed into Super Transcripts prior to identifying SNPs.
 
 ## Step 1:  Build transcriptome assembly
 _Download Trinity singularity container_
@@ -152,4 +152,52 @@ Trinity_gene_splice_modeler.py \
    --out_prefix Trinity.SuperTrans \
    --incl_malign \
    --verbose
+```
+
+_Summary of the Super Transcripts_
+```bash
+# Get assembly stats
+TrinityStats.pl Trinity.SuperTrans.fasta
+```
+
+_Output_
+```bash
+################################
+## Counts of transcripts, etc.
+################################
+Total trinity 'genes':	293691
+Total trinity transcripts:	293691
+Percent GC: 45.01
+
+########################################
+Stats based on ALL transcript contigs:
+########################################
+
+	Contig N10: 9738
+	Contig N20: 5680
+	Contig N30: 3496
+	Contig N40: 2177
+	Contig N50: 1408
+
+	Median contig length: 379
+	Average contig: 798.98
+	Total assembled bases: 234652073
+
+
+#####################################################
+## Stats based on ONLY LONGEST ISOFORM per 'GENE':
+#####################################################
+
+	Contig N10: 9738
+	Contig N20: 5680
+	Contig N30: 3496
+	Contig N40: 2177
+	Contig N50: 1408
+
+	Median contig length: 379
+	Average contig: 798.98
+	Total assembled bases: 234652073
+
+
+
 ```
