@@ -29,6 +29,7 @@ _All Trinity perl scripts from https://github.com/trinityrnaseq/trinityrnaseq_
 # Get assembly stats
 TrinityStats.pl Trinity.fasta
 ```
+
 _Output_
 ```
 ################################
@@ -161,7 +162,7 @@ TrinityStats.pl Trinity.SuperTrans.fasta
 ```
 
 _Output_
-```bash
+```
 ################################
 ## Counts of transcripts, etc.
 ################################
@@ -197,7 +198,4 @@ Stats based on ALL transcript contigs:
 	Median contig length: 379
 	Average contig: 798.98
 	Total assembled bases: 234652073
-
-
-
 ```
