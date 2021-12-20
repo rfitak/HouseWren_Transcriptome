@@ -51,10 +51,12 @@ rm -rf left.fq.gz right.fq.gz
 ## SNP output summary
 The final set of called SNPs are in the output file `filtered_output.vcf`.  In total, 2,200,840 variants were identified (including SNPs, indels, etc).  However, not all these SNPs are of high quality.  The pipeline above does filter SNPs using GATK's `VariantFiltration` engine and the following criteria:
 - `-window 35`
-  - fdfgfgf
+  - The window size (in bases) in which to evaluate clustered SNPs
 - `-cluster 3`
-  - dfgfdg
+  - The number of SNPs which make up a cluster.
 - `--filter-name FS -filter "FS > 30.0"`
-  - dsfsdfd
+  - Strand bias estimated using Fisher's Exact Test. Strand bias is a type of sequencing bias in which one DNA strand is favored over the other, which can result in incorrect evaluation of the amount of evidence observed for one allele vs. the other. The FisherStrand (FS) annotation is one of several methods that aims to evaluate whether there is strand bias in the data. It uses Fisher's Exact Test to determine if there is strand bias between forward and reverse strands for the reference or alternate allele. The output is a Phred-scaled p-value. The higher the output value, the more likely there is to be bias. More bias is indicative of false positive calls.
+  - FS > 30 means a P-value for bias < 0.001
 - `--filter-name QD -filter "QD < 2.0"`
-  - fgfdgfd
+  - The QD is the QUAL score normalized by allele depth (AD) for a variant
+  - This annotation puts the variant confidence QUAL score into perspective by normalizing for the amount of coverage available. Because each read contributes a little to the QUAL score, variants in regions with deep coverage can have artificially inflated QUAL scores, giving the impression that the call is supported by more evidence than it really is. To compensate for this, we normalize the variant confidence by depth, which gives us a more objective picture of how well supported the call is.
