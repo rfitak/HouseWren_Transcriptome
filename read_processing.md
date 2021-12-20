@@ -261,7 +261,7 @@ gzip unfixrm_HOWR-2_cleaned.R2.cor.fq
 mv unfixrm_HOWR-2_cleaned.R2.cor.fq.gz HOWR-2_cleaned.R2.cor.unfixrm.fq.gz
 ```
 
-_Output from FilterUncorrectabledPEfastq.py_
+_Output from FilterUncorrectabledPEfastq.py (see [rmrRNA.err](./Data/rmrRNA.err))_
 ```bash
 # Output file: rmunfixable_HOWR-1.log
 total PE reads:340474459
@@ -359,7 +359,7 @@ _Parameters explained_
 - --threads 16 :: use 16 cpus
 - --un-conc-gz :: store unaligned, properly paired reads in this gzipped output file
 
-_Output of SILVA Mapping_
+_Output of SILVA Mapping (see [rmrRNA.err](./Data/rmrRNA.err))_
 ```bash
 # HOWR-1
 333868684 reads; of these:
