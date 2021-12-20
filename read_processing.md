@@ -261,7 +261,7 @@ gzip unfixrm_HOWR-2_cleaned.R2.cor.fq
 mv unfixrm_HOWR-2_cleaned.R2.cor.fq.gz HOWR-2_cleaned.R2.cor.unfixrm.fq.gz
 ```
 
-_Output from FilterUncorrectabledPEfastq.py (see [rmrRNA.err](./Data/rmrRNA.err))_
+_Output from FilterUncorrectabledPEfastq.py (see [rmunfixable_HOWR-1.log](./Data/rmunfixable_HOWR-1.log) and [rmunfixable_HOWR-2.log](./Data/rmunfixable_HOWR-2.log))_
 ```bash
 # Output file: rmunfixable_HOWR-1.log
 total PE reads:340474459
