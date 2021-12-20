@@ -77,4 +77,5 @@ grep -v "^#" filtered_output.vcf | cut -f7 | sort | uniq -c
  602259 SnpCluster
 ```
 
-## Step 2:  Additional SNP filtering to a final set of robust SNPs to submit for Sequenom genotyping
+## Step 2:  Additional SNP filtering
+This section passes all the variants through additional checks to identify a final set of robust SNPs to submit for Sequenom genotyping.
