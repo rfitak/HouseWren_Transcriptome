@@ -90,7 +90,7 @@ _See the Output HTML/PDF Files from ```fastp``` below:_
 - [HOWR-2](./Data/HOWR-2.pdf)
 
 ### Output Summary
-_HOWR-1 Reads (see [HOWR-1.err](../Data/HOWR-1.err))_
+_HOWR-1 Reads (see [HOWR-1.err](./Data/HOWR-1.err))_
 ```
 # HOWR-1 PE reads
 Read1 before filtering:
@@ -138,7 +138,7 @@ HTML report: HOWR-1.html
 fastp v0.20.0, time used: 7621 seconds
 ```
 
-_HOWR-2 Reads_
+_HOWR-2 Reads (see [HOWR-2.err](./Data/HOWR-2.err))_
 ```
 # HOWR-2 PE reads
 Read1 before filtering:
@@ -224,7 +224,7 @@ _Parameters Explained:_
 - -k :: k-mer length, default=23
 - -t :: number of threads
 
-_Output from Rcorrector_
+_Output from Rcorrector (see [correct.err](./Data/correct.err))_
 ```bash
 Stored 713812866 kmers
 Weak kmer threshold rate: 0.027540 (estimated from 0.950/1 of the chosen kmers)
