@@ -49,4 +49,12 @@ rm -rf left.fq.gz right.fq.gz
 - [Log.final.out](./Data/Log.final.out)
 
 ## SNP output summary
-
+The final set of called SNPs are in the output file `filtered_output.vcf`.  In total, 2,200,840 variants were identified (including SNPs, indels, etc).  However, not all these SNPs are of high quality.  The pipeline above does filter SNPs using GATK and the following criteria:
+- `-window 35`
+  - fdfgfgf
+- `-cluster 3`
+  - dfgfdg
+- `--filter-name FS -filter "FS > 30.0"`
+  - dsfsdfd
+- `--filter-name QD -filter "QD < 2.0"`
+  - fgfdgfd
