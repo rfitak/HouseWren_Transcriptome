@@ -49,7 +49,7 @@ rm -rf left.fq.gz right.fq.gz
 - [Log.final.out](./Data/Log.final.out)
 
 ## SNP output summary
-The final set of called SNPs are in the output file `filtered_output.vcf`.  In total, 2,200,840 variants were identified (including SNPs, indels, etc).  However, not all these SNPs are of high quality.  The pipeline above does filter SNPs using GATK's `VariantFiltration` engine and the following criteria:
+The final set of called SNPs are in the output file `filtered_output.vcf`.  In total,** 2,200,840** variants were identified (including SNPs, indels, etc).  However, not all these SNPs are of high quality.  The pipeline above does filter SNPs using GATK's `VariantFiltration` engine and the following criteria:
 - `-window 35`
   - The window size (in bases) in which to evaluate clustered SNPs
 - `-cluster 3`
@@ -61,9 +61,9 @@ The final set of called SNPs are in the output file `filtered_output.vcf`.  In t
   - The QD is the QUAL score normalized by allele depth (AD) for a variant
   - This annotation puts the variant confidence QUAL score into perspective by normalizing for the amount of coverage available. Because each read contributes a little to the QUAL score, variants in regions with deep coverage can have artificially inflated QUAL scores, giving the impression that the call is supported by more evidence than it really is. To compensate for this, we normalize the variant confidence by depth, which gives us a more objective picture of how well supported the call is.
 
-All variants in `filtered_output.vcf` are labeled as either `PASS` (passing all the above criteria), or has one or more of the labels `QD`, `SnpCluster`, and `FS` when they don't pass that specific filter above. Here is a summary of the variants based on the filtering criteria:
+All variants in `filtered_output.vcf` are labeled as either `PASS` (passing all the above criteria), or has one or more of the labels `QD`, `SnpCluster`, and `FS` when they don't pass that specific filter above. Below is a summary of the variants based on the filtering criteria.  In total, **1,299,784** (59.1%) variants passed the filter.
 ```bash
-# FInd the number of SNPs matching each filter label
+# Find the number of SNPs matching each filter label
 grep -v "^#" filtered_output.vcf | cut -f7 | sort | uniq -c
 
 # Output
