@@ -42,10 +42,11 @@ run_variant_calling.py \
 rm -rf left.fq.gz right.fq.gz
 ```
 
-See various output and log files from the code above:
+**See various output and log files from the code above:**
 - [snp-calling.err](./Data/snp-calling.err)
 - [variant_calling.log](./Data/variant_calling.log)
 - [Log.out](./Data/Log.out)
 - [Log.final.out](./Data/Log.final.out)
 
+## SNP output summary
 
