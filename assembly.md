@@ -199,3 +199,5 @@ Stats based on ALL transcript contigs:
 	Average contig: 798.98
 	Total assembled bases: 234652073
 ```
+
+## Summary Table
