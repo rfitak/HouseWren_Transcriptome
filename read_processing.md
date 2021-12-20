@@ -90,7 +90,7 @@ _See the Output HTML/PDF Files from ```fastp``` below:_
 - [HOWR-2](./Data/HOWR-2.pdf)
 
 ### Output Summary
-_HOWR-1 Reads_
+_HOWR-1 Reads (see [HOWR-1.err](../Data/HOWR-1.err))_
 ```
 # HOWR-1 PE reads
 Read1 before filtering:
