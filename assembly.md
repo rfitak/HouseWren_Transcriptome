@@ -84,7 +84,7 @@ transrate \
    --loglevel=info
 ```
 
-_Output_
+_Output (see [transrate.out](./Data/transrate.out))_
 ```
 [ INFO] 2020-06-24 08:32:14 : Contig metrics:
 [ INFO] 2020-06-24 08:32:14 : -----------------------------------
