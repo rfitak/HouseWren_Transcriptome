@@ -60,3 +60,19 @@ The final set of called SNPs are in the output file `filtered_output.vcf`.  In t
 - `--filter-name QD -filter "QD < 2.0"`
   - The QD is the QUAL score normalized by allele depth (AD) for a variant
   - This annotation puts the variant confidence QUAL score into perspective by normalizing for the amount of coverage available. Because each read contributes a little to the QUAL score, variants in regions with deep coverage can have artificially inflated QUAL scores, giving the impression that the call is supported by more evidence than it really is. To compensate for this, we normalize the variant confidence by depth, which gives us a more objective picture of how well supported the call is.
+
+All variants in `filtered_output.vcf` are labeled as either `PASS` (passing all the above criteria), or has one or more of the labels `QD`, `SnpCluster`, and `FS` when they don't pass that specific filter above. Here is a summary of the variants based on the filtering criteria:
+```bash
+# FInd the number of SNPs matching each filter label
+grep -v "^#" filtered_output.vcf | cut -f7 | sort | uniq -c
+
+# Output
+   2340 FS
+    603 FS;QD
+    308 FS;QD;SnpCluster
+   1674 FS;SnpCluster
+1299784 PASS
+ 200579 QD
+  93293 QD;SnpCluster
+ 602259 SnpCluster
+```
