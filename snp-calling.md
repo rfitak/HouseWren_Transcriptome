@@ -76,3 +76,5 @@ grep -v "^#" filtered_output.vcf | cut -f7 | sort | uniq -c
   93293 QD;SnpCluster
  602259 SnpCluster
 ```
+
+## Step 2:  Additional SNP filtering to a final set of robust SNPs to submit for Sequenom genotyping
