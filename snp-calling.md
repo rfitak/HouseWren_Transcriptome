@@ -120,6 +120,9 @@ grep -v "^#" <(zcat clean.vcf.gz) | cut -f4,5 | sed -e "s/^./[&/g" -e "s/.$/&]/g
 
 # Merge to final table of flanking sequences
 paste <(cut -f1 tmp1 | sed "s/_LEFT//g") <(paste <(cut -f2 tmp1) tmp2 <(cut -f4 tmp1) | tr -d "\t") > flanking-seqs.tsv
+
+# Convert to a fasta file to use for BLASTING to zebra finch genome reference.
+
 ```
 
 _fasta2tab_
@@ -134,5 +137,18 @@ while(<>) {
     my ($h, @S) = split /\n/;
     my $s = join('', @S);
     print STDOUT "$h\t$s\n" unless (!$h);
+}
+```
+
+_tab2fasta_
+```perl
+#!/usr/bin/env perl
+# tab2fasta
+# Johan Nylander
+while(<>) {
+    chomp;
+    my ($h, $s) = split /\t+/;
+    $s =~ s/\S{60}/$&\n/sg;
+    print STDOUT ">$h\n$s\n";
 }
 ```
