@@ -49,7 +49,7 @@ rm -rf left.fq.gz right.fq.gz
 - [Log.final.out](./Data/Log.final.out)
 
 ## SNP output summary
-The final set of called SNPs are in the output file `filtered_output.vcf`.  In total,** 2,200,840** variants were identified (including SNPs, indels, etc).  However, not all these SNPs are of high quality.  The pipeline above does filter SNPs using GATK's `VariantFiltration` engine and the following criteria:
+The final set of called SNPs are in the output file `filtered_output.vcf`.  In total, **2,200,840** variants were identified (including SNPs, indels, etc).  However, not all these SNPs are of high quality.  The pipeline above does filter SNPs using GATK's `VariantFiltration` engine and the following criteria:
 - `-window 35`
   - The window size (in bases) in which to evaluate clustered SNPs
 - `-cluster 3`
@@ -102,11 +102,24 @@ This section passes all the variants through additional checks to identify a fin
 4. remove any loci that overlap repeat masked region
 5. remove any Super Transcripts (i.e. Genes) with a TPM count <1
 
-```bash
-# Get ONLY the SNPs (exclude MNPs, indels, etc) with PASS filter:
-bcftools view -f PASS --types snps -O z filtered_output.vcf > clean.vcf.gz
-tabix -p vcf clean.vcf.gz
+#### Step 2.1: Only retain biallelic SNPs with a heterozygous genotype that PASS the initial filter and have adequate depth of coverage
 
+_Label Homozygous sites or too little coverage in the filter column_
+
+```bash
+# Add filters "HOM" and "LowCov"
+bcftools filter -s "HOM" -e 'COUNT(GT="hom")>0' filtered_output.vcf | \
+   bcftools filter -s "LowCov" -e 'FORMAT/AD[*:*]<2' -O z > filtered_output2.vcf.gz
+   # still 2200840 variants in the file
+
+# Get ONLY the SNPs (exclude MNPs, indels, etc) with PASS filter:
+bcftools view --min-alleles 2 --max-alleles 2 --types snps -f PASS filtered_output2.vcf.gz -O z > clean.vcf.gz
+tabix -p vcf clean.vcf.gz
+   # 1,018,044 SNPs retained
+```
+
+
+```bash
 # Add flanking sequences
 fill-fs -l 100 -r ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > clean.flank.vcf  # failed, cant figure out why it wanrts to take negartive values
 
