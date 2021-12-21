@@ -77,5 +77,19 @@ grep -v "^#" filtered_output.vcf | cut -f7 | sort | uniq -c
  602259 SnpCluster
 ```
 
+_Here are some additional summary stats and plots for "PASS" SNPs_
+```bash
+# Get summary stats using bcftools
+bcftools stats -f 'PASS' filtered_output.vcf > out.ck
+
+# Plot results
+plot-vcfstats -p SNP-STATS out.ck
+```
+
+| col1 | col2 |
+| --- | --- |
+|     |     |
+|     |     |
+
 ## Step 2:  Additional SNP filtering
 This section passes all the variants through additional checks to identify a final set of robust SNPs to submit for Sequenom genotyping.
