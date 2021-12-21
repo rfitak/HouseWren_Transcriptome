@@ -120,7 +120,7 @@ tabix -p vcf clean.vcf.gz
 
 #### Step 2.2: Generate 200 bp of flanking sequence and remove SNPs with inadequate flanking sequence
 
-_Get flanking sequence using vcfprimers in [vcflib](https://github.com/vcflib/vcflib) package_
+_Get flanking sequence using `vcfprimers` in [vcflib](https://github.com/vcflib/vcflib) package_
 
 ```bash
 module load anaconda3/97
