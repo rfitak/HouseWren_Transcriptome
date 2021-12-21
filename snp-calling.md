@@ -1,8 +1,8 @@
 # Identifying SNPs
-TBD
+In this section we first identify SNPs from the reads aligned to the Super Transcripts reference fasta file. the full pipeline is described here https://github.com/trinityrnaseq/trinityrnaseq/wiki/Variant-Calling. This pipeline is well established, and other work has actually found that the Trinity + STAR + GATK pipeline produces the best variant calls (e.g., see [Zhao et al. 2019](https://doi.org/10.1186/s12864-019-5533-4)). After calling SNPs, we perform a series of steps in order to generate a set of high-quality candidate SNPs and flanking regions to be submitted to the Sequenom genotyping facility.
 
 ## Step 1:  Running Trinity's built-in GATK pipeline on the Super Transcripts
-TBD
+See the full pipeline here: https://github.com/trinityrnaseq/trinityrnaseq/wiki/Variant-Calling
 
 Dependencies that need to be installed:  
   - [Picard v2.23.0](https://broadinstitute.github.io/picard/)
