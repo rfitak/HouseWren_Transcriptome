@@ -102,5 +102,6 @@ This section passes all the variants through additional checks to identify a fin
 4. remove any Super Transcripts (i.e. Genes) with a TPM count <1
 
 ```bash
-
+# Get ONLY the SNPs (exclude MNPs, indels, etc) with PASS filter:
+bcftools view -f PASS --types snps -O u filtered_output.vcf > stdout.vcf
 ```
