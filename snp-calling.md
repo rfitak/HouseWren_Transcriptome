@@ -121,8 +121,12 @@ grep -v "^#" <(zcat clean.vcf.gz) | cut -f4,5 | sed -e "s/^./[&/g" -e "s/.$/&]/g
 # Merge to final table of flanking sequences
 paste <(cut -f1 tmp1 | sed "s/_LEFT//g") <(paste <(cut -f2 tmp1) tmp2 <(cut -f4 tmp1) | tr -d "\t") > flanking-seqs.tsv
 
-# Convert to a fasta file to use for BLASTING to zebra finch genome reference.
+# Next, remove any SNPs where one of the flanking sequences is less than 80 bp. Add a tab space at the end for searching later
+seqtk comp flanks.tmp.fa | cut -f1-2 | awk '$2 >= 80' | cut -f1 | sed "s/_LEFT\|_RIGHT//g" | sort | uniq | sed 's_$_\t_g' > keep.IDs
+   # A total of 1,055,154 remained
 
+# Convert to a fasta file to use for BLASTING to zebra finch genome reference. Keep referenec allele (first allele)
+grep -f keep.IDs flanking-seqs.tsv | tab2fasta | sed "s_\[\(.\)/.\]_\1_g" > flanking-subset.fasta
 ```
 
 _fasta2tab_
@@ -148,7 +152,7 @@ _tab2fasta_
 while(<>) {
     chomp;
     my ($h, $s) = split /\t+/;
-    $s =~ s/\S{60}/$&\n/sg;
+#    $s =~ s/\S{60}/$&\n/sg;   # don't wrap to 60 bases per line
     print STDOUT ">$h\n$s\n";
 }
 ```
