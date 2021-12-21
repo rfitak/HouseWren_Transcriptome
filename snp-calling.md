@@ -97,7 +97,7 @@ This section passes all the variants through additional checks to identify a fin
 2. Generate 200 bp of flanking sequence for each SNP
     - remove SNPs with <80 bp flanking sequence on either side
     - these SNPs are poor candidates for Sequenom primer development
-3. blast to a reference bird genome.
+3. BLAST to a reference bird genome.
     - remove sny loci that cross splice junction
 4. remove any loci that overlap repeat masked region
 5. remove any Super Transcripts (i.e. Genes) with a TPM count <1
@@ -179,4 +179,17 @@ while(<>) {
 #    $s =~ s/\S{60}/$&\n/sg;   # don't wrap to 60 bases per line
     print STDOUT ">$h\n$s\n";
 }
+```
+
+#### Step 2.3: BLAST to the zebrafinch reference genome
+
+```bash
+# Download and build BLAST DB for the Zebrafinch bTaeGut1.4
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/957/565/GCF_003957565.2_bTaeGut1.4.pri/GCF_003957565.2_bTaeGut1.4.pri_genomic.fna.gz
+mv GCF_003957565.2_bTaeGut1.4.pri_genomic.fna.gz bTaeGut1.4.fna.gz
+gunzip bTaeGut1.4.fna.gz
+
+# Build BLAST database
+makeblastdb -in bTaeGut1.4.fna -dbtype nucl -title bTaeGut1.4 -out bTaeGut1.4
+gzip bTaeGut1.4.fna
 ```
