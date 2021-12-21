@@ -106,5 +106,8 @@ This section passes all the variants through additional checks to identify a fin
 bcftools view -f PASS --types snps -O v filtered_output.vcf > clean.vcf
 
 # Add flanking sequences
-fill-fs -l 100 -r ../trinity1/Trinity.SuperTrans.fasta clean.vcf > clean.flank.vcf
+fill-fs -l 100 -r ../trinity1/Trinity.SuperTrans.fasta clean.vcf > clean.flank.vcf  # failed, cant figure out why it wanrts to take negartive values
+
+# Get left and right flanking sequences
+vcfprimers -l 200 -f ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > flanks.tmp.fa
 ```
