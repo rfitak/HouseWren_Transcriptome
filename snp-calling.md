@@ -103,10 +103,11 @@ This section passes all the variants through additional checks to identify a fin
 
 ```bash
 # Get ONLY the SNPs (exclude MNPs, indels, etc) with PASS filter:
-bcftools view -f PASS --types snps -O v filtered_output.vcf > clean.vcf
+bcftools view -f PASS --types snps -O z filtered_output.vcf > clean.vcf.gz
+tabix -p vcf clean.vcf.gz
 
 # Add flanking sequences
-fill-fs -l 100 -r ../trinity1/Trinity.SuperTrans.fasta clean.vcf > clean.flank.vcf  # failed, cant figure out why it wanrts to take negartive values
+fill-fs -l 100 -r ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > clean.flank.vcf  # failed, cant figure out why it wanrts to take negartive values
 
 # Get left and right flanking sequences
 vcfprimers -l 200 -f ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > flanks.tmp.fa
