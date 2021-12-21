@@ -118,14 +118,23 @@ tabix -p vcf clean.vcf.gz
    # 1,018,044 SNPs retained
 ```
 
+#### Step 2.2: Generate 200 bp of flanking sequence and remove SNPs with inadequate flanking sequence
+
+_Get flanking sequence using vcfprimers in vcflib package_
 
 ```bash
-# Add flanking sequences
-fill-fs -l 100 -r ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > clean.flank.vcf  # failed, cant figure out why it wanrts to take negartive values
+module load anaconda3/97
+source activate samtools # vcflib installed here via conda
 
 # Get left and right flanking sequences
 vcfprimers -l 200 -f ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > flanks.tmp.fa
 
+# Add flanking sequences
+   # fill-fs -l 100 -r ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > clean.flank.vcf  # failed, cant figure out why it wanrts to take negartive values
+```
+
+xxxxxxxxx
+```bash
 # Convert to tab format, then merge
 paste <(fasta2tab flanks.tmp.fa | sed -n 1~2p) <(fasta2tab flanks.tmp.fa | sed -n 2~2p) > tmp1
 
