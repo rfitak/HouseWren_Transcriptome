@@ -133,7 +133,8 @@ vcfprimers -l 200 -f ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > flanks.
    # fill-fs -l 100 -r ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > clean.flank.vcf  # failed, cant figure out why it wanrts to take negartive values
 ```
 
-xxxxxxxxx
+_Convert flanking sequence file into a clean, fasta file_
+
 ```bash
 # Convert to tab format, then merge
 paste <(fasta2tab flanks.tmp.fa | sed -n 1~2p) <(fasta2tab flanks.tmp.fa | sed -n 2~2p) > tmp1
@@ -146,9 +147,9 @@ paste <(cut -f1 tmp1 | sed "s/_LEFT//g") <(paste <(cut -f2 tmp1) tmp2 <(cut -f4 
 
 # Next, remove any SNPs where one of the flanking sequences is less than 80 bp. Add a tab space at the end for searching later
 seqtk comp flanks.tmp.fa | cut -f1-2 | awk '$2 >= 80' | cut -f1 | sed "s/_LEFT\|_RIGHT//g" | sort | uniq | sed 's_$_\t_g' > keep.IDs
-   # A total of 1,055,154 remained
+   # A total of 1,009,770 remained
 
-# Convert to a fasta file to use for BLASTING to zebra finch genome reference. Keep referenec allele (first allele)
+# Convert to a fasta file to use for BLASTING to zebra finch genome reference. Keep reference allele (first allele)
 grep -f keep.IDs flanking-seqs.tsv | tab2fasta | sed "s_\[\(.\)/.\]_\1_g" > flanking-subset.fasta
 ```
 
