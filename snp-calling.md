@@ -103,5 +103,8 @@ This section passes all the variants through additional checks to identify a fin
 
 ```bash
 # Get ONLY the SNPs (exclude MNPs, indels, etc) with PASS filter:
-bcftools view -f PASS --types snps -O u filtered_output.vcf > stdout.vcf
+bcftools view -f PASS --types snps -O v filtered_output.vcf > clean.vcf
+
+# Add flanking sequences
+fill-fs -l 100 -r ../trinity1/Trinity.SuperTrans.fasta delete.vcf > delete.flank.vcf
 ```
