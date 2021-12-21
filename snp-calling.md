@@ -85,10 +85,11 @@ bcftools stats -f 'PASS' filtered_output.vcf > out.ck
 # Plot results
 plot-vcfstats -p SNP-STATS out.ck
 ```
+![summary.png](./images/summary.png)
 
-|![depth.0.png](./Data/depth.0.png)|![indels.0.png](./Data/indels.0.png)|
+|![depth.0.png](./images/depth.0.png)|![indels.0.png](./images/indels.0.png)|
 | --- | --- |
-|![tstv_by_qual.0.png](./Data/tstv_by_qual.0.png)|![substitutions.0.png](./Data/substitutions.0.png)|
+|![tstv_by_qual.0.png](./images/tstv_by_qual.0.png)|![substitutions.0.png](./images/substitutions.0.png)|
 
 ## Step 2:  Additional SNP filtering
 This section passes all the variants through additional checks to identify a final set of robust SNPs to submit for Sequenom genotyping.
