@@ -93,6 +93,9 @@ plot-vcfstats -p SNP-STATS out.ck
 
 ## Step 2:  Additional SNP filtering
 This section passes all the variants through additional checks to identify a final set of robust SNPs to submit for Sequenom genotyping.
+A. Only keep biallelic SNPs with a heterozygous genotype
+B. ddfdsf
+C. dfdsf
 
 1. get flanking region for each SNP (min 80 bp, max 200 bp each side of SNP)
   - remove SNPs with poor/too little flanking regions
