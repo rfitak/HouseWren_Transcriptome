@@ -111,4 +111,28 @@ fill-fs -l 100 -r ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > clean.flan
 
 # Get left and right flanking sequences
 vcfprimers -l 200 -f ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > flanks.tmp.fa
+
+# Convert to tab format, then merge
+paste <(fasta2tab flanks.tmp.fa | sed -n 1~2p) <(fasta2tab flanks.tmp.fa | sed -n 2~2p) > tmp1
+
+# Get SNP alleles
+grep -v "^#" <(zcat clean.vcf.gz) | cut -f4,5 | sed -e "s/^./[&/g" -e "s/.$/&]/g" -e "s_\t_/_g" > tmp2
+
+# Merge to final table of flanking sequences
+paste <(cut -f1 tmp1 | sed "s/_LEFT//g") <(paste <(cut -f2 tmp1) tmp2 <(cut -f4 tmp1) | tr -d "\t") > flanking-seqs.tsv
+```
+
+_fasta2tab_
+```perl
+#!/usr/bin/env perl
+# fasta2tab
+# Johan Nylander
+local $/ = '>';
+while(<>) {
+    chomp;
+    next if($_ eq '');
+    my ($h, @S) = split /\n/;
+    my $s = join('', @S);
+    print STDOUT "$h\t$s\n" unless (!$h);
+}
 ```
