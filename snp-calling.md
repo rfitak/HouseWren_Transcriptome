@@ -93,3 +93,14 @@ plot-vcfstats -p SNP-STATS out.ck
 
 ## Step 2:  Additional SNP filtering
 This section passes all the variants through additional checks to identify a final set of robust SNPs to submit for Sequenom genotyping.
+
+1. get flanking region for each SNP (min 80 bp, max 200 bp each side of SNP)
+  - remove SNPs with poor/too little flanking regions
+2. blast to a reference bird genome.
+  - remove sny loci that cross splice junction
+3. remove any loci that overlap repeat masked region
+4. remove any Super Transcripts (i.e. Genes) with a TPM count <1
+
+```bash
+
+```
