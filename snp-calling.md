@@ -97,10 +97,11 @@ This section passes all the variants through additional checks to identify a fin
 2. Generate 200 bp of flanking sequence for each SNP
     - remove SNPs with <80 bp flanking sequence on either side
     - these SNPs are poor candidates for Sequenom primer development
-3. BLAST to a reference bird genome.
+3. Remove any Super Transcripts (i.e. Genes) with a TPM count <1
+  - after mapping reads back to the Super Transcripts, sequences with littel read coverage lack support
+4. BLAST to a reference bird genome.
     - remove sny loci that cross splice junction
-4. remove any loci that overlap repeat masked region
-5. remove any Super Transcripts (i.e. Genes) with a TPM count <1
+5. remove any loci that overlap repeat masked region
 
 #### Step 2.1: Only retain biallelic SNPs with a heterozygous genotype that PASS the initial filter and have adequate depth of coverage
 
@@ -181,7 +182,33 @@ while(<>) {
 }
 ```
 
-#### Step 2.3: BLAST to the zebrafinch reference genome
+#### Step 2.3: Remove any Super Transcripts (i.e. Genes) with a TPM count <1
+In this section, the trimmed/cleaned sequencing reads used in the Trinity assembly are mapped back to the Super Transcipts using [bowtie2 v2.4.2](https://github.com/BenLangmead/bowtie2). After mapping, [rsem v1.3.3](https://deweylab.github.io/RSEM/) is used to estimate the expression level for each Super Transcipt in **TPM** (_transcripts per million_). The metric **TPM** scales expression for each transcript by the gene length and sequencing depth. In general, sequences with a **TPM**<1 are often considered to lack support for downstream analyses.  In [Kaiser et al. 2017](https://doi.org/10.1111/1755-0998.12589), the authors omitted contigs (i.e., trasncripts) with a **TPM**<2. The `align_and_estimate_abundance.pl` perl script used is available in the `util` folder as part of the Trinity package.
+
+_align reads and estimate abundance (TPM)_
+```bash
+# Marge together the forward and reverse read files
+cat HOWR-1_cleaned.cor.unfixrm.rmrRNA.fq.1.gz HOWR-2_cleaned.cor.unfixrm.rmrRNA.fq.1.gz > left.fq.gz
+cat HOWR-1_cleaned.cor.unfixrm.rmrRNA.fq.2.gz HOWR-2_cleaned.cor.unfixrm.rmrRNA.fq.2.gz > right.fq.gz
+
+# Align and estimate abundance (bowtie2 and rsem must be in the PATH)
+ align_and_estimate_abundance.pl \
+	 --transcripts Trinity.SuperTrans.fasta \
+	 --seqType fq \
+	 --left left.fq.gz \
+	 --right right.fq.gz \
+	 --est_method RSEM \
+	 --aln_method bowtie2 \
+	 --prep_reference \
+	 --thread_count 32 \
+	 --SS_lib_type RF \
+	 --output_dir rsem_outdir 
+
+# Remove the read files at the end.
+rm -rf left.fq.gz right.fq.gz
+```
+
+#### Step 2.4: BLAST to the zebrafinch reference genome
 
 ```bash
 # Download and build BLAST DB for the Zebrafinch bTaeGut1.4
