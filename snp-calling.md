@@ -210,6 +210,8 @@ rm -rf left.fq.gz right.fq.gz
 
 _**2.3.2:** Generate list of transcripts with TPM≥1_
 ```bash
+# Move counts/expression file to 'SNPs' folder
+mv rsem_outdir/RSEM.genes.results ../../SNPs
 awk '$6 >= 1'
 ```
 
