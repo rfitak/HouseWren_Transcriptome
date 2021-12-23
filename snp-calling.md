@@ -105,7 +105,7 @@ This section passes all the variants through additional checks to identify a fin
 
 #### Step 2.1: Only retain biallelic SNPs with a heterozygous genotype that PASS the initial filter and have adequate depth of coverage
 
-_Label Homozygous sites or too little coverage in the filter column_
+_**2.1.1:** Label Homozygous sites or too little coverage in the filter column_
 
 ```bash
 # Add filters "HOM" and "LowCov"
@@ -121,7 +121,7 @@ tabix -p vcf clean.vcf.gz
 
 #### Step 2.2: Generate 200 bp of flanking sequence and remove SNPs with inadequate flanking sequence
 
-_Get flanking sequence using `vcfprimers` in [vcflib](https://github.com/vcflib/vcflib) package_
+_**2.2.1:** Get flanking sequence using `vcfprimers` in [vcflib](https://github.com/vcflib/vcflib) package_
 
 ```bash
 module load anaconda3/97
@@ -131,10 +131,10 @@ source activate samtools # vcflib installed here via conda
 vcfprimers -l 200 -f ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > flanks.tmp.fa
 
 # Add flanking sequences
-   # fill-fs -l 100 -r ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > clean.flank.vcf  # failed, cant figure out why it wanrts to take negartive values
+   # fill-fs -l 100 -r ../trinity1/Trinity.SuperTrans.fasta clean.vcf.gz > clean.flank.vcf  # failed, cant figure out why it wants to take negative values
 ```
 
-_Convert flanking sequence file into a clean, fasta file_
+_**2.2.2:** Convert flanking sequence file into a clean, fasta file_
 
 ```bash
 # Convert to tab format, then merge
@@ -185,7 +185,7 @@ while(<>) {
 #### Step 2.3: Remove any Super Transcripts (i.e. Genes) with a TPM count <1
 In this section, the trimmed/cleaned sequencing reads used in the Trinity assembly are mapped back to the Super Transcipts using [bowtie2 v2.4.2](https://github.com/BenLangmead/bowtie2). After mapping, [rsem v1.3.3](https://deweylab.github.io/RSEM/) is used to estimate the expression level for each Super Transcipt in **TPM** (_transcripts per million_). The metric **TPM** scales expression for each transcript by the gene length and sequencing depth. In general, sequences with a **TPM**<1 are often considered to lack support for downstream analyses.  In [Kaiser et al. 2017](https://doi.org/10.1111/1755-0998.12589), the authors omitted contigs (i.e., trasncripts) with a **TPM**<2. The `align_and_estimate_abundance.pl` perl script used is available in the `util` folder as part of the Trinity package.
 
-_align reads and estimate abundance (TPM)_
+_**2.3.1:** align reads and estimate abundance (TPM)_
 ```bash
 # Marge together the forward and reverse read files
 cat HOWR-1_cleaned.cor.unfixrm.rmrRNA.fq.1.gz HOWR-2_cleaned.cor.unfixrm.rmrRNA.fq.1.gz > left.fq.gz
@@ -206,6 +206,11 @@ cat HOWR-1_cleaned.cor.unfixrm.rmrRNA.fq.2.gz HOWR-2_cleaned.cor.unfixrm.rmrRNA.
 
 # Remove the read files at the end.
 rm -rf left.fq.gz right.fq.gz
+```
+
+_**2.3.2:** Generate list of transcripts with TPM≥1_
+```bash
+awk '$6 >= 1'
 ```
 
 #### Step 2.4: BLAST to the zebrafinch reference genome
