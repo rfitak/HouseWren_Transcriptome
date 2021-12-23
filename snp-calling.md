@@ -271,3 +271,18 @@ blastn \
    -out flanking-subset-TPM1.blastout \
    -num_threads 32
 ```
+
+
+_TBD_
+```bash
+# Get annotations
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/957/565/GCF_003957565.2_bTaeGut1.4.pri/GCF_003957565.2_bTaeGut1.4.pri_genomic.gff.gz
+mv GCF_003957565.2_bTaeGut1.4.pri_genomic.gff.gz bTaeGut1.4.gff.gz
+gunzip bTaeGut1.4.gff.gz
+
+# Convert annotations to GTF format
+gffread -E bTaeGut1.4.gff -T -o bTaeGut1.4.gtf
+
+# Get splice junctions/introns
+python3 hisat2_extract_splice_sites.py bTaeGut1.4.gtf > bTaeGut1.4.sj.gtf
+```
