@@ -152,6 +152,7 @@ seqtk comp flanks.tmp.fa | cut -f1-2 | awk '$2 <= 80' | cut -f1 | sed "s/_LEFT\|
 
 # Convert to a fasta file to use for BLASTING to zebra finch genome reference. Keep reference allele (first allele)
 grep -v -f remove.IDs flanking-seqs.tsv | tab2fasta | sed "s_\[\(.\)/.\]_\1_g" > flanking-subset.fasta
+grep -v -f remove.IDs flanking-seqs.tsv > flanking-subset.tsv
    # A total of 812,823 SNP loci remain
 ```
 
