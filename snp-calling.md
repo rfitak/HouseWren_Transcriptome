@@ -147,11 +147,12 @@ grep -v "^#" <(zcat clean.vcf.gz) | cut -f4,5 | sed -e "s/^./[&/g" -e "s/.$/&]/g
 paste <(cut -f1 tmp1 | sed "s/_LEFT//g") <(paste <(cut -f2 tmp1) tmp2 <(cut -f4 tmp1) | tr -d "\t") > flanking-seqs.tsv
 
 # Next, remove any SNPs where one of the flanking sequences is less than 80 bp. Add a tab space at the end for searching later
-seqtk comp flanks.tmp.fa | cut -f1-2 | awk '$2 >= 80' | cut -f1 | sed "s/_LEFT\|_RIGHT//g" | sort | uniq | sed 's_$_\t_g' > keep.IDs
-   # A total of 1,009,770 remained
+seqtk comp flanks.tmp.fa | cut -f1-2 | awk '$2 <= 80' | cut -f1 | sed "s/_LEFT\|_RIGHT//g" | sort | uniq | sed 's_$_\t_g' > remove.IDs
+   # A total of 205,221 SNP loci need to be removed
 
 # Convert to a fasta file to use for BLASTING to zebra finch genome reference. Keep reference allele (first allele)
-grep -f keep.IDs flanking-seqs.tsv | tab2fasta | sed "s_\[\(.\)/.\]_\1_g" > flanking-subset.fasta
+grep -v -f remove.IDs flanking-seqs.tsv | tab2fasta | sed "s_\[\(.\)/.\]_\1_g" > flanking-subset.fasta
+   # A total of 812,823 SNP loci remain
 ```
 
 _fasta2tab_
