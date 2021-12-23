@@ -232,9 +232,9 @@ grep -f Super.Transcripts_TPM1.list flanking-subset.tsv | sed '/^--/d' > flankin
 
 # How many sequences are left?
 grep -c "^>" flanking-subset-TPM1.fasta
-   # 281,877
+   # 262,871
 ```
-To summarize, at the end of this step (**Step 2.3**), a total of 281,877 putative SNPs remain.  These SNPs have been filtered for all sorts of identification criteria, and are also restricted to transcripts with reasonably high support from the assembly for being true transcripts.
+To summarize, at the end of this step (**Step 2.3**), a total of 262,871 putative SNPs remain.  These SNPs have been filtered for all sorts of identification criteria, and are also restricted to transcripts with reasonably high support from the assembly for being true transcripts.
 
 #### Step 2.4: BLAST to the zebrafinch reference genome
 
