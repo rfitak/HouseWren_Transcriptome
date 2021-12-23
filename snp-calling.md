@@ -224,9 +224,10 @@ awk '$6 >= 1' RSEM.genes.results | cut -f1 | sed '1d' | sed 's/$/_/g' > Super.Tr
 
 _**2.3.3:** Generate a final subset of SNP loci for transcripts with TPM≥1_
 ```bash
-# Subset FASTA file of flanking sequences for just these Super Transcripts
+# Subset FASTA and TSV files of flanking sequences for just these Super Transcripts
    # sed command is to remove the extra '--' inserted by grep
 grep -f Super.Transcripts_TPM1.list -A1 flanking-subset.fasta | sed '/^--/d' > flanking-subset-TPM1.fasta
+grep -f Super.Transcripts_TPM1.list flanking-subset.tsv | sed '/^--/d' > flanking-subset-TPM1.tsv
 
 # How many sequences are left?
 grep -c "^>" flanking-subset-TPM1.fasta
