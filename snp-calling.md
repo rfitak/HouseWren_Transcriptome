@@ -238,7 +238,9 @@ grep -c "^>" flanking-subset-TPM1.fasta
 To summarize, at the end of this step (**Step 2.3**), a total of 262,871 putative SNPs remain.  These SNPs have been filtered for all sorts of identification criteria, and are also restricted to transcripts with reasonably high support from the assembly for being true transcripts.
 
 #### Step 2.4: BLAST to the zebrafinch reference genome
+In this section, we BLAST each flanking region and remove any loci that match multiple locations.  These are indicative of potential paralogs and not true SNPs. As a reference, we are using the [zebra finch reference genome](https://www.ncbi.nlm.nih.gov/genome/?term=txid59729[orgn]).  In particular, the most recent assembly [GCA_003957565.4 bTaeGut1.4.pri](https://www.ncbi.nlm.nih.gov/genome/367?genome_assembly_id=1613864).  This assembly was recently built by the Vertebrate Genomes Project and contains a chromosome-level assembly composed of 199 scaffolds.  Although the Carolina wren (_Thryothorus ludovicianus_) has a [genome available](https://www.ncbi.nlm.nih.gov/genome/?term=txid74200[Organism:noexp]) and is more closely related to the house wren, the zebra finch genome is a much higher quality assembly.
 
+_**2.4.1:** Gather zebra finch genome and setup BLAST database_
 ```bash
 # Download and build BLAST DB for the Zebrafinch bTaeGut1.4
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/957/565/GCF_003957565.2_bTaeGut1.4.pri/GCF_003957565.2_bTaeGut1.4.pri_genomic.fna.gz
@@ -248,4 +250,24 @@ gunzip bTaeGut1.4.fna.gz
 # Build BLAST database
 makeblastdb -in bTaeGut1.4.fna -dbtype nucl -title bTaeGut1.4 -out bTaeGut1.4
 gzip bTaeGut1.4.fna
+```
+
+_**2.4.2:** Perform the BLAST search_
+```bash
+# Load BLAST module (v2.11.0+)
+module load blast+
+
+# Set env variable to blast database locations
+export BLASTDB=$PWD:$BLASTDB
+
+# Blast Abyss contigs using 32 cores (only took a few minutes to run)
+blastn \
+   -query flanking-subset-TPM1.fasta \
+   -db  bTaeGut1.4 \
+   -max_target_seqs 5 \
+   -max_hsps 1 \
+   -evalue 1e-3 \
+   -outfmt '6' \
+   -out flanking-subset-TPM1.blastout \
+   -num_threads 32
 ```
