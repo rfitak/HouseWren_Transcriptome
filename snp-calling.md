@@ -212,8 +212,27 @@ _**2.3.2:** Generate list of transcripts with TPM≥1_
 ```bash
 # Move counts/expression file to 'SNPs' folder
 mv rsem_outdir/RSEM.genes.results ../../SNPs
-awk '$6 >= 1'
+
+# How to sort a file with headers (e.g., sort by TPM)
+cat RSEM.genes.results | (sed -u 1q; sort -nr -k6,6) | less
+
+# Generate list of transcripts with TPM≥1
+   # Add "_" to end of each trasncript ID to improve search
+awk '$6 >= 1' RSEM.genes.results | cut -f1 | sed '1d' | sed 's/$/_/g' > Super.Transcripts_TPM1.list
+   # 17,682 transcripts in total selected
 ```
+
+_**2.3.3:** Generate a final subset of SNP loci for transcripts with TPM≥1_
+```bash
+# Subset FASTA file of flanking sequences for just these Super Transcripts
+   # sed command is to remove the extra '--' inserted by grep
+grep -f Super.Transcripts_TPM1.list -A1 flanking-subset.fasta | sed '/^--/d' > flanking-subset-TPM1.fasta
+
+# How many sequences are left?
+grep -c "^>" flanking-subset-TPM1.fasta
+   # 281,877
+```
+To summarize, at the end of this step (**Step 2.3**), a total of 281,877 putative SNPs remain.  These SNPs have been filtered for all sorts of identification criteria, and are also restricted to transcripts with reasonably high support from the assembly for being true transcripts.
 
 #### Step 2.4: BLAST to the zebrafinch reference genome
 
