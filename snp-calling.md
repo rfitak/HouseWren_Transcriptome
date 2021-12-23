@@ -98,10 +98,10 @@ This section passes all the variants through additional checks to identify a fin
     - remove SNPs with <80 bp flanking sequence on either side
     - these SNPs are poor candidates for Sequenom primer development
 3. Remove any Super Transcripts (i.e. Genes) with a TPM count <1
-  - after mapping reads back to the Super Transcripts, sequences with littel read coverage lack support
+    - after mapping reads back to the Super Transcripts, sequences with littel read coverage lack support
 4. BLAST to a reference bird genome.
-    - remove sny loci that cross splice junction
-5. remove any loci that overlap repeat masked region
+    - remove any loci that cross splice junctions
+5. Remove any loci that overlap repeat masked region
 
 #### Step 2.1: Only retain biallelic SNPs with a heterozygous genotype that PASS the initial filter and have adequate depth of coverage
 
