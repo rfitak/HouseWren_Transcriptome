@@ -274,7 +274,7 @@ blastn \
 
 _**2.4.3:** Retain loci with only a single BLAST hit_
 ```bash
-# Get list of loci with a single hit
+# Get list of loci with a single hit (for searching the tsv file, add tab character at the end)
 cut -f1 flanking-subset-TPM1.blastout | \
    sort | \
    uniq -c | \
@@ -282,11 +282,20 @@ cut -f1 flanking-subset-TPM1.blastout | \
    awk '$1 = 1' | \
    cut -d' ' -f2 | \
    sed 's_$_\t_g' > 1-hit-seqs.list
+   
+ # Get list of loci with a single hit (for searching the fasta file, add $ character at the end)
+cut -f1 flanking-subset-TPM1.blastout | \
+   sort | \
+   uniq -c | \
+   sed "s/^ *//g" | \
+   awk '$1 = 1' | \
+   cut -d' ' -f2 | \
+   sed 's_$_\$_g' > 1-hit-seqs.list2
    # 220,125 loci remain
 
 # Filter SNPs and FASTA to retain these IDs.
 grep -f 1-hit-seqs.list -A1 flanking-subset-TPM1.fasta | sed '/^--/d' > flanking-subset-TPM1-1hit.fasta
-grep -f 1-hit-seqs.list flanking-subset-TPM1.tsv | sed '/^--/d' > flanking-subset-TPM1-1hit.tsv
+grep -f 1-hit-seqs.list2 flanking-subset-TPM1.tsv | sed '/^--/d' > flanking-subset-TPM1-1hit.tsv
 ```
 
 _TBD_
