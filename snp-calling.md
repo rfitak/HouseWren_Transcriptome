@@ -294,8 +294,8 @@ cut -f1 flanking-subset-TPM1.blastout | \
    # 220,125 loci remain
 
 # Filter SNPs and FASTA to retain these IDs.
-grep -f 1-hit-seqs.list -A1 flanking-subset-TPM1.fasta | sed '/^--/d' > flanking-subset-TPM1-1hit.fasta
-grep -f 1-hit-seqs.list2 flanking-subset-TPM1.tsv | sed '/^--/d' > flanking-subset-TPM1-1hit.tsv
+grep -f 1-hit-seqs.list2 -A1 flanking-subset-TPM1.fasta | sed '/^--/d' > flanking-subset-TPM1-1hit.fasta
+grep -f 1-hit-seqs.list flanking-subset-TPM1.tsv | sed '/^--/d' > flanking-subset-TPM1-1hit.tsv
 ```
 
 _TBD_
