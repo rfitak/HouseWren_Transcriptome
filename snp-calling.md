@@ -314,9 +314,12 @@ python3 hisat2_extract_splice_sites.py bTaeGut1.4.gtf > bTaeGut1.4.sj.bed
 
 _**2.5.3:** Make a BED file of BLAST Hit locations in the reference genome_
 ```bash
-# Get BLAST hit locations
-grep -f 1-hit-seqs.list flanking-subset-TPM1.blastout | \
-   awk '{print($2"\t"$9-1"\t"$10)}' > flanking-subset-TPM1-1hit.bed
+# Get BLAST 1hit subset
+grep -f 1-hit-seqs.list flanking-subset-TPM1.blastout > flanking-subset-TPM1-1hit.blastout
+
+# Convert to bed format
+blast2bed flanking-subset-TPM1-1hit.blastout
+   # output is flanking-subset-TPM1-1hit.blastout.bed
 ```
 _**2.5.4:** Retain SNPs without any overlaps_
 ```bash
