@@ -339,7 +339,7 @@ grep -f TPM1-1Hit-noOverlaps.list flanking-subset-TPM1-1hit.tsv | sed '/^--/d' >
 #### Summary of the SNP filtering procecure
 1. Started with **2,200,840** called variants
 2. Of these, **1,299,784** variants passed the initial quality filter
-3. Of these, **1,018,044** were biallelic SNPs that passes the coverage filter and we called heterozygous.
+3. Of these, **1,018,044** were biallelic SNPs that passed the coverage filter and were called heterozygous.
 4. Of these, **812,823** SNPs had adequate flanking sequence (≥80 bp) for primer design
 5. Of these, **262,871** SNPs were found on Super Transcripts with a TPM > 1 (17,682 Super Transcripts)
 6. Of these, **208,986** SNPs (including flanking region) had a single BLAST hit to the zebra finch reference genome
