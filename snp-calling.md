@@ -288,7 +288,16 @@ seqtk subseq -l0 ../flanking-subset-TPM1.fasta 1-hit-seqs.list > ../flanking-sub
 grep -f 1-hit-seqs.list flanking-subset-TPM1.tsv | sed '/^--/d' > flanking-subset-TPM1-1hit.tsv
 ```
 
-_TBD_
+#### Step 2.5: Remove SNPs overlapping a splice junction or masked region
+In this section, we will remove every SNP that overlaps either 1) a region in the reference genome that has been soft masked or 2) a region that contains an annotate splice junction. For the formers, the masked bases in the reference genome (made lower case letters) are indicative of either low quality bases or bases that contain an annotated repetive element. For the latter, a splice junction is an exon-intron junction, as we do want a SNP near a junction since the fragment size amplified by PCR may differ from that predicted/expected for the Sequenom analysis. We will combine these two "intervals" (GFF/BED files of genomic locations) into a single file then retains SNPs not overlapping these regions based on the blast results.
+
+_**2.5.1:** Make a BED file of masked regions in the reference genome (long perl command)_
+```bash
+# This only works if each FASTA sequence is one-per-line (not wrapped)
+seqtk seq -l0 bTaeGut1.4.fna | \
+   perl -lne 'if(/^>(\S+)/){ $n=$1} else { while(/([a-z]+)/g){ printf("%s\t%d\t%d\n",$n,pos($_)-length($1),pos($_)) } }' > bTaeGut1.4.masked.bed
+````
+_**2.5.2:** Make a GTF file of splice junctions in the reference genome_
 ```bash
 # Get annotations
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/957/565/GCF_003957565.2_bTaeGut1.4.pri/GCF_003957565.2_bTaeGut1.4.pri_genomic.gff.gz
@@ -300,4 +309,17 @@ gffread -E bTaeGut1.4.gff -T -o bTaeGut1.4.gtf
 
 # Get splice junctions/introns
 python3 hisat2_extract_splice_sites.py bTaeGut1.4.gtf > bTaeGut1.4.sj.gtf
+
+# Convert to bed format
+gffread -E bTaeGut1.4.sj.gtf --bed -o bTaeGut1.4.bed
+````
+
+
+
+
+_TBD_
+```bash
+
+seqtk seq -l0 bTaeGut1.4.fna | perl -lne 'if(/^>(\S+)/){ $n=$1} else { while(/([a-z]+)/g){ printf("%s\t%d\t%d\n",$n,pos($_)-length($1),pos($_)) } }' > bTaeGut1.4.masked.bed
+
 ```
