@@ -324,5 +324,24 @@ blast2bed flanking-subset-TPM1-1hit.blastout
 _**2.5.4:** Retain SNPs without any overlaps_
 ```bash
 # Get non-overlapping SNPs
-
+bedtools intersect -v -a flanking-subset-TPM1-1hit.blastout.bed -b bTaeGut1.4.masked.bed | \
+   bedtools intersect -v -a - -b bTaeGut1.4.sj.gtf | \
+   cut -f4 | \
+   sed 's_$_\t_g' > TPM1-1Hit-noOverlaps.list
+  # starting with 208,986 loci, 31,268 did not overlap masked regions, and 8,257 of these did not overlap a splice junction.
+  
+# Filter SNPs and FASTA to retain these IDs.
+seqtk subseq -l0 flanking-subset-TPM1-1hit.fasta TPM1-1Hit-noOverlaps.list > flanking-subset-TPM1-1hit-noOverlaps.fasta
+grep -f TPM1-1Hit-noOverlaps.list flanking-subset-TPM1-1hit.tsv | sed '/^--/d' > flanking-subset-TPM1-1hit-noOverlaps.tsv
+   # 8,257 loci with a single blast hit
 ```
+
+#### Summary of the SNP filtering procecure
+1. Started with **2,200,840** called variants
+2. Of these, **1,299,784** variants passed the initial quality filter
+3. Of these, **1,018,044** were biallelic SNPs that passes the coverage filter and we called heterozygous.
+4. Of these, **812,823** SNPs had adequate flanking sequence (≥80 bp) for primer design
+5. Of these, **262,871** SNPs were found on Super Transcripts with a TPM > 1 (17,682 Super Transcripts)
+6. Of these, **208,986** SNPs (including flanking region) had a single BLAST hit to the zebra finch reference genome
+7. Of these **31,268** SNPs did not overlap a masked region in the reference genome
+8. Of these, **8,257** SNPs did not overlap a splice junction (intron-exon boundary) in the referene genome.
