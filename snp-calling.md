@@ -279,13 +279,14 @@ cut -f1 flanking-subset-TPM1.blastout | \
    sort | \
    uniq -c | \
    sed "s/^ *//g" | \
-   awk '$1 = 1' | \
+   awk '$1 == 1' | \
    cut -d' ' -f2 | \
    sed 's_$_\t_g' > 1-hit-seqs.list
 
 # Filter SNPs and FASTA to retain these IDs.
 seqtk subseq -l0 ../flanking-subset-TPM1.fasta 1-hit-seqs.list > ../flanking-subset-TPM1-1hit.fasta
 grep -f 1-hit-seqs.list flanking-subset-TPM1.tsv | sed '/^--/d' > flanking-subset-TPM1-1hit.tsv
+   # 208,986 loci with a single blast hit
 ```
 
 #### Step 2.5: Remove SNPs overlapping a splice junction or masked region
@@ -297,7 +298,7 @@ _**2.5.1:** Make a BED file of masked regions in the reference genome (long perl
 seqtk seq -l0 bTaeGut1.4.fna | \
    perl -lne 'if(/^>(\S+)/){ $n=$1} else { while(/([a-z]+)/g){ printf("%s\t%d\t%d\n",$n,pos($_)-length($1),pos($_)) } }' > bTaeGut1.4.masked.bed
 ````
-_**2.5.2:** Make a GTF file of splice junctions in the reference genome_
+_**2.5.2:** Make a BED file of splice junctions in the reference genome_
 ```bash
 # Get annotations
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/957/565/GCF_003957565.2_bTaeGut1.4.pri/GCF_003957565.2_bTaeGut1.4.pri_genomic.gff.gz
@@ -308,18 +309,13 @@ gunzip bTaeGut1.4.gff.gz
 gffread -E bTaeGut1.4.gff -T -o bTaeGut1.4.gtf
 
 # Get splice junctions/introns
-python3 hisat2_extract_splice_sites.py bTaeGut1.4.gtf > bTaeGut1.4.sj.gtf
-
-# Convert to bed format
-gffread -E bTaeGut1.4.sj.gtf --bed -o bTaeGut1.4.bed
+python3 hisat2_extract_splice_sites.py bTaeGut1.4.gtf > bTaeGut1.4.sj.bed
 ````
 
-
-
-
-_TBD_
+_**2.5.3:** Make a BED file of BLAST Hit locations in the reference genome_
 ```bash
-
-seqtk seq -l0 bTaeGut1.4.fna | perl -lne 'if(/^>(\S+)/){ $n=$1} else { while(/([a-z]+)/g){ printf("%s\t%d\t%d\n",$n,pos($_)-length($1),pos($_)) } }' > bTaeGut1.4.masked.bed
-
+grep -f 1-hit-seqs.list flanking-subset-TPM1.blastout | \
+   awk '{print($2"\t"$7-1"\t"$8)}' > flanking-subset-TPM1.blastout
 ```
+
+
