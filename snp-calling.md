@@ -345,3 +345,4 @@ grep -f TPM1-1Hit-noOverlaps.list flanking-subset-TPM1-1hit.tsv | sed '/^--/d' >
 6. Of these, **208,986** SNPs (including flanking region) had a single BLAST hit to the zebra finch reference genome
 7. Of these **31,268** SNPs did not overlap a masked region in the reference genome
 8. Of these, **8,257** SNPs did not overlap a splice junction (intron-exon boundary) in the referene genome.
+    - 2,677 Super Transcripts represented
