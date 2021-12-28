@@ -374,3 +374,15 @@ echo "done"
 7. Of these **31,268** SNPs did not overlap a masked region in the reference genome
 8. Of these, **8,257** SNPs did not overlap a splice junction (intron-exon boundary) in the referene genome.
     - 2,677 Super Transcripts represented
+
+_Build Final output table_
+```bash
+# Build final tab-separated table
+paste \
+   <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv | sed "s/_[0-9]*$//g") \
+   <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv | cut -d"_" -f5) \
+   <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv) \
+   <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv | sed 's_$_\t_g' | grep -f - BLAST/flanking-subset-TPM1-1hit.blastout | cut -f 2,9,10) \
+   <(cut -f2 flanking-subset-TPM1-1hit-noOverlaps.tsv) | \
+   cat <(echo -e "SuperTranscript\tPosition\tSNP_ID\tbTaeGut1.4_Chrom\tbTaeGut1.4_start\tbTaeGut1.4_end\tSequence") - > final.table.tsv
+```
