@@ -383,9 +383,31 @@ paste \
    <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv) \
    <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv | sed "s/_[0-9]*$//g") | \
    sort -k3,3 > temp.list
-cut -f3 temp.list | uniq -c | sed "s/^ *//g" | tr " " "\t" | perl -ane 'if($F[0]=1){print "x\n"'
+cut -f3 temp.list | uniq -c | sed "s/^ *//g" | tr " " "\t" > unique-counts.list
+c=1
 
+# Run counter.sh script
+while read i
+   do
+   bash counter.sh "$i" >> SNP-set
+   echo "finished $c"
+   c=$(( $c + 1 ))
+done < unique-counts.list 
+paste temp.list SNP-set | sort -nk1,1 > SNP-set.list
 
+# Build final tab-separated table
+paste \
+   <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv | sed "s/_[0-9]*$//g") \
+   <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv | cut -d"_" -f5) \
+   <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv) \
+   <(cut -f4 SNP-set.list) \
+   <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv | sed 's_$_\t_g' | grep -f - BLAST/flanking-subset-TPM1-1hit.blastout | cut -f 2,9,10) \
+   <(cut -f2 flanking-subset-TPM1-1hit-noOverlaps.tsv) | \
+   cat <(echo -e "SuperTranscript\tPosition\tSNP_ID\tSNP_Set\tbTaeGut1.4_Chrom\tbTaeGut1.4_start\tbTaeGut1.4_end\tSequence") - > final.table.tsv
+```
+
+_counter.sh_
+```bash
 #!/bin/bash
 c=$(echo "$1" | cut -f1)
 id=$(echo "$1" | cut -f2)
@@ -397,22 +419,4 @@ if [[ $c -eq 1 ]]
    o=$(echo "$l" | head -n $c)
    echo -e "$o"
 fi
-
-while read i; do bash counter.sh "$i" >> delete; echo "finished $c"; c=$(( $c + 1 )); done < unique-counts.list 
-
-awk '$1 > 1' | cut -d" " -f2 | paste - <(echo {A..Z}{A..Z}{A..Z} | xargs -n1 | head -2677)
-   <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv | sed "s/_[0-9]*$//g" | sort | uniq -c | sed "s/^ *//g" | awk '$1 > 1' | cut -d" " -f2 | paste - <(echo {A..Z}{A..Z}{A..Z} | xargs -n1 | head -2677) | grep -f <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv | sed "s/_[0-9]*$//g") | cut -f2) \
-
-
-# Build final tab-separated table
-
-
-
-paste \
-   <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv | sed "s/_[0-9]*$//g") \
-   <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv | cut -d"_" -f5) \
-   <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv) \
-   <(cut -f1 flanking-subset-TPM1-1hit-noOverlaps.tsv | sed 's_$_\t_g' | grep -f - BLAST/flanking-subset-TPM1-1hit.blastout | cut -f 2,9,10) \
-   <(cut -f2 flanking-subset-TPM1-1hit-noOverlaps.tsv) | \
-   cat <(echo -e "SuperTranscript\tPosition\tSNP_ID\tbTaeGut1.4_Chrom\tbTaeGut1.4_start\tbTaeGut1.4_end\tSequence") - > final.table.tsv
 ```
