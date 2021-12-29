@@ -420,3 +420,26 @@ if [[ $c -eq 1 ]]
    echo -e "$o"
 fi
 ```
+
+_Thin SNPs to +/- 200 bp of each other_
+```bash
+# Make new table for inthinerator
+   # SNPID, rsid, chromosome, position, alleleA, alleleB
+paste \
+   <(sed '1d' final.table.tsv | cut -f3) \
+   <(sed '1d' final.table.tsv | cut -f3) \
+   <(sed '1d' final.table.tsv | cut -f1) \
+   <(sed '1d' final.table.tsv | cut -f2) \
+   <(sed '1d' final.table.tsv | cut -f8 | sed "s_^.*\[\(./.\)\].*\$_\1_g" | sed "s_/_\t_g") | \
+   cat <(echo -e "SNPID\trsid\tchromosome\tposition\talleleA\talleleB") - > thin.input.tsv
+
+# Using list of unique IDs
+l=$(echo "$u" | wc -l)
+pos=$(grep "$u" final.table.tsv | cut -f2 | tr "\n" "\t" | sed "s_\t\$__g")
+out1=$(echo "$u" | head -1)
+perl -ane 'n=$#F; if $F[1]-$F'
+
+echo "$out1"
+
+
+```
