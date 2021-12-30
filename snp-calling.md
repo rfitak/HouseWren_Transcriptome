@@ -364,17 +364,6 @@ grep -v '^#' "$INPUT" | perl -ane 'if($F[8]<=$F[9]){print join("\t",$F[1],$F[8]-
 echo "done"
 ```
 
-#### Summary of the SNP filtering procecure
-1. Started with **2,200,840** called variants
-2. Of these, **1,299,784** variants passed the initial quality filter
-3. Of these, **1,018,044** were biallelic SNPs that passed the coverage filter and were called heterozygous.
-4. Of these, **812,823** SNPs had adequate flanking sequence (≥80 bp) for primer design
-5. Of these, **262,871** SNPs were found on Super Transcripts with a TPM > 1 (17,682 Super Transcripts)
-6. Of these, **208,986** SNPs (including flanking region) had a single BLAST hit to the zebra finch reference genome
-7. Of these **31,268** SNPs did not overlap a masked region in the reference genome
-8. Of these, **8,257** SNPs did not overlap a splice junction (intron-exon boundary) in the referene genome.
-    - 2,677 Super Transcripts represented
-
 _Build Final output table_
 ```bash
 # Make list of "SNP_Set"
@@ -493,3 +482,14 @@ else{
 }
 print("\n");
 ```
+#### Summary of the SNP filtering procedure
+1. Started with **2,200,840** called variants
+2. Of these, **1,299,784** variants passed the initial quality filter
+3. Of these, **1,018,044** were biallelic SNPs that passed the coverage filter and were called heterozygous.
+4. Of these, **812,823** SNPs had adequate flanking sequence (≥80 bp) for primer design
+5. Of these, **262,871** SNPs were found on Super Transcripts with a TPM > 1 (17,682 Super Transcripts)
+6. Of these, **208,986** SNPs (including flanking region) had a single BLAST hit to the zebra finch reference genome
+7. Of these **31,268** SNPs did not overlap a masked region in the reference genome
+8. Of these, **8,257** SNPs did not overlap a splice junction (intron-exon boundary) in the referene genome.
+    - 2,677 Super Transcripts represented
+9. Of these, **4,793** SNPs were retained after thinning to keep SNPs >200 bp apart if ont he same Super Transcript
