@@ -423,23 +423,73 @@ fi
 
 _Thin SNPs to +/- 200 bp of each other_
 ```bash
-# Make new table for inthinerator
-   # SNPID, rsid, chromosome, position, alleleA, alleleB
-paste \
-   <(sed '1d' final.table.tsv | cut -f3) \
-   <(sed '1d' final.table.tsv | cut -f3) \
-   <(sed '1d' final.table.tsv | cut -f1) \
-   <(sed '1d' final.table.tsv | cut -f2) \
-   <(sed '1d' final.table.tsv | cut -f8 | sed "s_^.*\[\(./.\)\].*\$_\1_g" | sed "s_/_\t_g") | \
-   cat <(echo -e "SNPID\trsid\tchromosome\tposition\talleleA\talleleB") - > thin.input.tsv
+# Make list of unique scaffolds
+sed '1d' final.table.tsv | cut -f1 | sort | uniq > unique.list
 
-# Using list of unique IDs
-l=$(echo "$u" | wc -l)
-pos=$(grep "$u" final.table.tsv | cut -f2 | tr "\n" "\t" | sed "s_\t\$__g")
-out1=$(echo "$u" | head -1)
-perl -ane 'n=$#F; if $F[1]-$F'
+# Process one by one
+head -1 final.table.tsv > final.thinned.tsv
+c=1
+while read i
+   do
+   grep "$i" final.table.tsv > tmp
+   perl thin.pl tmp >> final.thinned.tsv
+   echo "finished $c"
+   c=$(( $c + 1 ))
+done < unique.list
+rm tmp
+```
 
-echo "$out1"
+_thin.pl_
+```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+# read input file as array
+my @array = <>;
+chomp(@array);
+
+# setup empty array of positions
+my @pos;
+my @out;
+
+# add position values into the array
+foreach (@array) {
+        my @p = split("\t");
+	push(@pos, $p[1]);
+}
+
+# Get number of SNPs for the contig
+my $l = @pos;
+
+#Testing
+#print join(", ", @pos);
+#print "\n$l\n";
 
 
+if($l == 1){
+	print($array[0]);
+}
+else{
+	push(@out, $array[0]);
+	my $n = @pos;
+
+	while($n > 1){
+		my $diff = abs($pos[1] - $pos[0]);
+		if($diff > 200){
+			push(@out, $array[1]);
+			shift(@pos);
+			shift(@array);
+		}
+		else{
+			splice @pos, 1, 1;
+			splice @array, 1, 1;
+			#shift(@pos);
+			#shift(@array);
+		}
+		$n = @pos;
+	}
+	print join("\n", @out);
+}
+print("\n");
 ```
