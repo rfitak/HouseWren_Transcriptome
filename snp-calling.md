@@ -102,6 +102,7 @@ This section passes all the variants through additional checks to identify a fin
 4. BLAST to a reference bird genome.
     - remove any loci that cross splice junctions
 5. Remove any loci that overlap repeat masked region
+6. Thin to SNPs >200 bp apart on the same Super Transcripts
 
 #### Step 2.1: Only retain biallelic SNPs with a heterozygous genotype that PASS the initial filter and have adequate depth of coverage
 
