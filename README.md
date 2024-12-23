@@ -1,10 +1,12 @@
 <h3><p align="center">Supplementary Methods for:</p></h3>
 <h2><p align="center">The <i>de novo</i> assembly of the house wren (<i>Troglodytes aedon</i>) transcriptome</p></h2>
 
-<I><h5>Rachael DiSciullo<sup>1</sup>, Robert R. Fitak<sup>2</sup>, Anna Forsman<sup>2</sup>, Scott Sakaluk<sup>1</sup>, Charles Thompson<sup>1</sup></h5></I>
+<I><h5>Rachael DiSciullo<sup>1</sup>, Anna Forsman<sup>2,3</sup>, Robert R. Fitak<sup>2</sup>, John Hunt<sup>4</sup>, Pirmin Nietlisbach<sup>1</sup>, Charles F. Thompson<sup>1</sup>, Scott K. Sakaluk<sup>1</sup></h5></I>
 
-1. Department of Biology, Illinois State University, Normal, IL 61790 USA.
+1. Behavior, Ecology, Evolution, and Conservation Section, School of Biological Sciences, Illinois State University, Normal, IL, USA
 2. Department of Biology, Genomics and Bioinformatics Cluster, University of Central Florida, Orlando, FL 32816 USA.
+3. Current location: Department of Biology, Colby College, Waterville, ME, USA
+4. School of Science, Western Sydney University, Penrith, Australia
 
 <br>
 
@@ -19,7 +21,7 @@
 ***
 ___This GitHub repository contains a summary of the various code, software, and data analysis pipelines used for the aforementioned study of the house wren. The contents represented here are only to be used as an example and not intended to be comeprehensive. The authors make no representation about the suitability or accuracy of this code, software, or data for any purpose, and make no warranties, either expressed or implied, for a particular purpose or that the use of this software or data will not infringe any third party patents, copyrights, trademarks, or other rights. The code, software and data are provided "as is". All content is hereby registered under the GNU General Public License v3.0, see [LICENSE](./LICENSE). Any publication that significantly relies upon the use of the content generated herein shall appropriately cite:___
 
-<p align="center">DiSciullo et al. (in prep.) The <i>de novo</i> assembly of the house wren (<i>Troglodytes aedon</i>) trascriptome. TBD</p>
+<p align="center">DiSciullo et al. (2024) Male song structure predicts offspring recruitment to the breeding population in a migratory bird. <i>Evolution</i> 78(6): 1054–1066. [https://doi.org/10.1093/evolut/qpae036](https://doi.org/10.1093/evolut/qpae036)</p>
 
 ***
   
